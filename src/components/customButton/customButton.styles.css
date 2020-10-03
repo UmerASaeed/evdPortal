@@ -1,0 +1,15 @@
+.cButton
+{
+    background-color:#5495FD ;
+    font-family: "HelveticaNeueCyr-Light";
+    letter-spacing: 0.2px;
+    color: white;
+    border: none;
+    padding: 10px;
+
+}
+
+.cButton:hover
+{
+    cursor: pointer;
+}

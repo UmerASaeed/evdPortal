@@ -1,0 +1,29 @@
+.header
+{
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+.signOut
+{
+    display: flex;
+    flex-direction: row;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.signOut:hover{
+    cursor: pointer;
+}
+
+.logOut{
+    color: #DC253C;
+    font-weight: bold;
+}
+
+.logo{
+    margin-top: 5px;
+}

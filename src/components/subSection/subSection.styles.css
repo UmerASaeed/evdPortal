@@ -1,0 +1,13 @@
+.subSection
+{
+    background-color:#FFFFFF; 
+    height: 95%;
+    margin: 0% 3%;
+}
+
+.titles
+{
+    display: flex;
+    font-family: "HelveticaNeueCyr-Bold";
+    justify-content: space-around;
+}
