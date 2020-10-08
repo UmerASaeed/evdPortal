@@ -1,0 +1,57 @@
+.addClientPage
+{
+    height: 90%;
+    background-color: #F4F4F8;
+    
+}
+.client-container
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.sub-left
+{
+    background-color:#FFFFFF; 
+    height: 80%;
+    width: 45%;
+}
+
+.sub-right
+{
+    background-color:#FFFFFF; 
+    height: 80%;
+    margin-left: 2%;
+    width: 45%;
+}
+
+.vat,.clientName
+{
+    margin-left: 20%;
+    margin-top: 12px;
+    height: 22px;
+    border: 1px solid #EAEAEA;
+}
+
+.clientName
+{
+    margin-left: 9%;
+}
+
+.first-two-client,.second-two-client
+{
+    display: flex;
+    
+}
+
+.purchaseProd,.paymentReport,.downloadFiles,.WalletReport
+{
+    display: flex;
+    margin-left: 5%;
+}
+
+.WalletReport
+{
+    margin-left: 11%;
+}

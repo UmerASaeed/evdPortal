@@ -2,7 +2,7 @@
 {
     background-color:#5495FD ;
     font-family: "HelveticaNeueCyr-Light";
-    letter-spacing: 0.2px;
+    letter-spacing: 0.2ch;
     color: white;
     border: none;
     padding: 10px;
@@ -12,4 +12,10 @@
 .cButton:hover
 {
     cursor: pointer;
+}
+
+.cButton:focus
+{
+    outline-style:groove;
+    outline-color: #5495FD;
 }

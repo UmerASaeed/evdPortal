@@ -19,7 +19,8 @@ const Navigator = ({currentSection}) =>
                     SectionsList.map((section,index)=>
                     {
                         return <Section key={index} navigateTo={`${section}`} addClass={section === currentSection ? currentSection : ""} />
-                    })                    
+                    })    
+         
                 }   
             </div>
         </div>

@@ -1,0 +1,40 @@
+.addBtnn
+{
+    position: relative;
+}
+
+.addBtn{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color:#5495FD;
+    width: 18.72px;
+    height: 18.72px;
+    border: 1px solid #5495FD;
+    border-radius: 12px;
+    position: relative;
+}
+
+.popUp-hidden
+{
+    display: none;    
+}
+
+
+.pop
+{
+    position: absolute;
+    z-index: 1;
+    left: 30px;    
+}
+
+.addSign
+{
+    position: absolute;
+    top: -15px
+}
+
+.addBtn:hover
+{
+    cursor: pointer;
+}

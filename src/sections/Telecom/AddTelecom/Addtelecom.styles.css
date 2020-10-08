@@ -1,0 +1,32 @@
+.telecom-info-text
+{
+    font-family: "HelveticaNeueCyr-Light";
+    margin-left: 10%;
+}
+
+.telecom-name-en,.telecom-name-ar,.telecom-logo
+{
+    display: flex;
+    font-size: 16px;
+    margin-left: 10%;
+}
+
+.tn-en,.tn-ar
+{
+    margin-top: 12px;
+    height: 22px;
+    border: 1px solid #EAEAEA;
+    margin-left: 5%;
+}
+
+.tn-logo
+{
+    margin-top: 10px;
+    margin-left: 30%;
+}
+
+.new-telecom
+{
+    margin-top: -40%;
+    margin-left: 59.5%;
+}

@@ -1,0 +1,20 @@
+.checkBox,.checked
+{
+    width: 40px;
+    height: 38px;
+    border: 1px solid #EAEAEA;
+    position: relative;
+    ;
+}
+
+.checked
+{
+    border: 1px solid #5495FD;
+}
+
+.tick
+{
+    position: absolute;
+    width: 40px;
+    top:20%;
+}

@@ -1,7 +1,4 @@
-.content {
-    height: 90%;
-    background-color: #F4F4F8;
-}
+
 .subHeader
 {
     display: flex;
@@ -18,7 +15,7 @@
 .options
 {
     display: flex;  
-    width:40% ;
+    width:60% ;
     justify-content: flex-end;
     align-items: center;
     margin-right: 3%;

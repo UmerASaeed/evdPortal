@@ -1,6 +1,6 @@
 import {SectionActionTypes} from "./sectionTypes"
 const INITIAL_STATE = {
-    currentSection:""
+    currentSection:"Clients"
 }
 
 const SectionReducer = (state = INITIAL_STATE,action) =>

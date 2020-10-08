@@ -19,8 +19,12 @@
 }
 
 body{
-  font-family: 'HelveticaNeueCyr-UltraLight';
+  font-family: 'HelveticaNeueCyr-Light';
   letter-spacing: 1px;
 }
 
+.content {
+  height: 90%;
+  background-color: #F4F4F8;
+}
 

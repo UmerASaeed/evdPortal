@@ -1,0 +1,39 @@
+.displayStaff
+{
+    display: flex;
+    margin-left: 4%;
+}
+
+.staff-name
+{
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.staff-username
+{
+    margin-right: 13%;
+    
+   
+}
+
+.staff-createdAt
+{
+    margin-right: 10%;
+    width:249px
+}
+
+.staff-permissions
+{
+    width: 300px;
+    height: 150px;
+    overflow: scroll;
+    margin-right:0%;      
+}
+
+.staff-EditBtn
+{
+    margin-right: 5%;
+}
+
