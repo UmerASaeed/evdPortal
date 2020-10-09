@@ -1,4 +1,9 @@
-
+.client-content
+{
+    height: 90%;
+    background-color: #F4F4F8;
+}
+  
 .subHeader
 {
     display: flex;
@@ -33,4 +38,8 @@
 .searchBar:focus
 {
     border: none;
+}
+
+@media screen and (max-width:1440px){
+    
 }

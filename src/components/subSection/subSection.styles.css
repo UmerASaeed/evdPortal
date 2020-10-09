@@ -1,9 +1,14 @@
+.Content
+{
+    height: 90%;
+    background-color: #F4F4F8;
+}
+
 .subSection
 {
     background-color:#FFFFFF; 
     height: 95%;
     margin: 0% 3%;
-    overflow: scroll;
 }
 
 .subSectionHalf
@@ -21,17 +26,16 @@
     margin: 0% 25%;
 }
 
-.titles,.titles1
+.titles
 {
     display: flex;
     font-family: "HelveticaNeueCyr-Bold";
-    justify-content: space-around;
-    overflow: scroll;
 }
 
-.titles1
+.dynamic-title
 {
-    font-size: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .manageProds
@@ -39,4 +43,24 @@
     display: flex;
     overflow-x: scroll;
     margin-left: 60%;
+}
+
+@media screen and (max-width:1440px){
+
+   .subSection
+    {
+        width:max-width;
+        overflow-x: scroll;
+    }
+    .titles
+    {
+        width: 1200px;
+    }
+
+   .subSection-Content
+   {
+        width:1200px;
+        overflow-x: scroll;
+   }
+  
 }

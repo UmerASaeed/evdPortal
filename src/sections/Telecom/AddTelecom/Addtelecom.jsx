@@ -6,7 +6,7 @@ import "./Addtelecom.styles.css"
 const Addtelecom = () =>
 {
     return(
-        <div className="content">
+        <div className="telecom-content">
             <div className='title'>
                 <h2>Telecom / Add New Telecom</h2>
             </div>
@@ -22,16 +22,16 @@ const Addtelecom = () =>
                             <input type="text" placeholder=" Telecom Name (AR)" className="tn-ar"/>
                         </div>
                         <div className="telecom-logo">
-                            <p>Logo</p>
+                            <p className="tele-logo">Logo</p>
                             <div className="tn-logo">
                                 <CustomButton btnText="UPLOAD"/>
                             </div>
                         </div>
                 </div>
+                <div className="new-telecom">
+                    <CustomButton btnText="Create New Telecom"/>
+                </div>
             </SubSection>
-            <div className="new-telecom">
-             <CustomButton btnText="Create New Telecom"/>
-            </div>
         </div>
     );
 }

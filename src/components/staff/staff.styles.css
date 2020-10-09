@@ -1,39 +1,28 @@
 .displayStaff
 {
     display: flex;
-    margin-left: 4%;
+    position: relative;
 }
 
-.staff-name
+.staff-name,.staff-username,.staff-createdAt,.staff-permissions,.staff-EditBtn
 {
-    margin-right: 10%;
     display: flex;
     justify-content: center;
-}
-
-.staff-username
-{
-    margin-right: 13%;
-    
-   
-}
-
-.staff-createdAt
-{
-    margin-right: 10%;
-    width:249px
-}
-
-.staff-permissions
-{
-    width: 300px;
-    height: 150px;
-    overflow: scroll;
-    margin-right:0%;      
+    width: 20%;
 }
 
 .staff-EditBtn
 {
-    margin-right: 5%;
+    margin-left: 20%;
 }
+
+.staff-permissions
+{
+    height: 150px;
+    overflow: scroll; 
+    position: absolute;
+    left: 65%;
+    padding-left: 1%;
+}
+
 

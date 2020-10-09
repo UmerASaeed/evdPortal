@@ -6,6 +6,7 @@
     color: white;
     border: none;
     padding: 10px;
+    font-size: 12px;
 
 }
 
@@ -19,3 +20,10 @@
     outline-style:groove;
     outline-color: #5495FD;
 }
+
+@media screen and (max-width:1000px){
+
+    .cButton{
+        font-size: 10px;
+    }
+ }

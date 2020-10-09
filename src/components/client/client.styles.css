@@ -2,23 +2,24 @@
 {
     display: flex;
     font-size: 15px;
-    margin-left: 4%;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.client-name
+.client-name,.client-username
 {
-    width: 10%;
+    width: 14.28%;
+    display: flex;
+    justify-content: center;
     
-}
+} 
 
-.client-wallet,.client-payment
+.client-wallet,.client-payment,.client-edit-btn
 {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 2%;
-    width: 10%;
+    width: 14.28%;
     
 }
 
@@ -34,28 +35,17 @@
     margin-right: 6%;
 }
 
-.client-payment
-{
-    margin-left: 2%;
-    width: 13.5%;
-}
 
 .client-LastLogIn
 {
-    margin-left: 3%;
-    width: 16%;
-    
+    width: 11.28%;
+    padding-left: 3%;    
 }
 
-.client-username
-{
-    width: 14%;
-    margin-left: 0%;
-}
+
 
 .client-createdAt
 {
-    width: 15%;
-    margin-left: 2%;
-    margin-right: 3%;
+    width: 11.28%;
+    padding-left: 3%;
 }

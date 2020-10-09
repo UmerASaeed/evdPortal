@@ -36,7 +36,7 @@ const Clients = ({fetchClients,clients,isfetching}) =>
     
 
     return(
-        <div className="content">
+        <div className="client-content">
             <div className="subHeader">
                 <h2 className="subText">Clients</h2>
                 <div className="options">

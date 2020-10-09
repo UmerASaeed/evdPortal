@@ -25,23 +25,37 @@
     margin-left: 2%;
     width: 45%;
 }
-
-.vat,.clientName
+.info-client,.vat-client,.email-client,.username-client,.pass-client
 {
-    margin-left: 20%;
+    display: flex;
+    margin-left: 10%;
+    width: 90%;
+}
+
+.info-client-name,.vat-num,.pw-email,.client-username1,.client-pass
+{
+    width:25%;
+}
+
+
+.vat,.clientName,.user-inp,.email-pw,.client-user-inp,.client-pass-inp
+{
     margin-top: 12px;
     height: 22px;
     border: 1px solid #EAEAEA;
 }
 
-.clientName
+.permission
 {
-    margin-left: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
-
 .first-two-client,.second-two-client
 {
     display: flex;
+    flex-direction: column;
     
 }
 
@@ -49,9 +63,4 @@
 {
     display: flex;
     margin-left: 5%;
-}
-
-.WalletReport
-{
-    margin-left: 11%;
 }

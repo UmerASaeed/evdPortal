@@ -1,6 +1,19 @@
+
 ::-webkit-scrollbar {
-    width: 0px;
+    height: 4px;
+    width: 4px;
   }
+  
+  ::-webkit-scrollbar-track {
+    
+    border-radius: 10px;
+  }
+   
+
+  ::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 10px;
+  } 
 
 .navigator
 {   
@@ -29,7 +42,6 @@
     letter-spacing: 2px;
     color: #FFFFFF;
     opacity: 1;
-    letter-spacing: 2px;
     margin-left: -55px;
     margin-top: 10px;
 }
@@ -37,7 +49,6 @@
 .subf
 {
     display: flex;
-    width: 273px;
     margin-top: -60px;
     margin-left: -20px;
 }
@@ -50,3 +61,45 @@
     width: 100%;
     overflow: scroll;
 }
+
+@media screen and (max-width:1440px){
+    
+    .evd{
+        font-size: 50px;
+        margin-left: 0;
+        display: flex;
+        justify-content: center
+    }
+    .subf
+    {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+  
+ }
+
+ @media screen and (max-width:989px){
+    
+    .evd{
+        font-size: 40px;
+    }
+  
+  
+ }
+
+ @media screen and (max-width:740px){
+    
+    .evd{
+        font-size: 30px;
+    }
+  
+ }
+
+ @media screen and (max-width:510px){
+    
+    .evd{
+        font-size: 20px;
+    }
+  
+ }

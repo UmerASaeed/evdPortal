@@ -11,25 +11,25 @@ const AddClient = () =>
                 <div className="sub-left">
                     <div className="info">
                         <h2 className="info-text">Information</h2>
-                            <div className="staff">
-                                <p>Client Name</p>
+                            <div className="info-client">
+                                <p className="info-client-name">Client Name</p>
                                 <input type="text" placeholder=" Client Name" className="clientName"/>
                             </div>
-                            <div className="username">
-                                <p>VAT #</p>
+                            <div className="vat-client">
+                                <p className="vat-num">VAT #</p>
                                 <input type="text" placeholder=" VAT # (optional)" className="vat"/>
                             </div>
-                            <div className="username">
-                                <p>PW E-mail</p>
-                                <input type="text" placeholder=" Password Email" className="user-inp"/>
+                            <div className="email-client">
+                                <p className="pw-email">PW E-mail</p>
+                                <input type="text" placeholder=" Password Email" className="email-pw"/>
                             </div>
-                            <div className="username">
-                                <p>Username</p>
-                                <input type="text" placeholder=" username" className="user-inp"/>
+                            <div className="username-client">
+                                <p className="client-username1">Username</p>
+                                <input type="text" placeholder=" username" className="client-user-inp"/>
                             </div>
-                            <div className="pass">
-                                <p>Password</p>
-                                <input type="password" placeholder=" ******" className="pass-inp"/>
+                            <div className="pass-client">
+                                <p className="client-pass">Password</p>
+                                <input type="password" placeholder=" ******" className="client-pass-inp"/>
                             </div>
                     </div>
                     <br/><br/>
@@ -41,16 +41,16 @@ const AddClient = () =>
                                 <CheckBox/>
                                 <p className="checkOption ">Purchase Products</p>
                             </div>
-                            <div className="paymentReport" >
+                            <div className="downloadFiles" >
                                 <CheckBox/>
-                                <p className="checkOption">View Payments Report</p>
+                                <p className="checkOption">Download Files</p>
                             </div>
                         </div>  
                         <br/> 
                         <div className="second-two-client">
-                            <div className="downloadFiles" >
-                                <CheckBox/>
-                                <p className="checkOption">Download Files</p>
+                            <div className="paymentReport" >
+                                    <CheckBox/>
+                                    <p className="checkOption">View Payments Report</p>
                             </div>
                             <div className="WalletReport" >
                                 <CheckBox/>

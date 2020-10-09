@@ -1,3 +1,9 @@
+.telecom-content
+{
+    height: 90%;
+    background-color: #F4F4F8;
+}
+
 .telecom-info-text
 {
     font-family: "HelveticaNeueCyr-Light";
@@ -22,11 +28,41 @@
 .tn-logo
 {
     margin-top: 10px;
-    margin-left: 30%;
+}
+
+
+.tele-logo
+{
+    width: 20%;
 }
 
 .new-telecom
 {
-    margin-top: -40%;
+    margin-top: 13%;
     margin-left: 59.5%;
 }
+
+@media screen and (max-width:1010px){
+    .telecom-name-en,.telecom-name-ar,.telecom-logo
+    {
+        font-size: 12px;
+       
+    }
+    .tn-en,.tn-ar
+    {
+        width: auto;
+    }
+   .new-telecom{
+    margin-top: 25%;
+   }
+ }
+
+ @media screen and (max-width:700px){
+    .tn-en,.tn-ar
+    {
+        width: 110px;
+    }
+   .new-telecom{
+    /* margin-top: 20%; */
+   }
+ }

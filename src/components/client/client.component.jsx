@@ -19,7 +19,9 @@ const Client = ({id,fullName,currentCredit,paymentBalance,lastLogInAt,username,c
             <p className="client-LastLogIn">{lastLogInAt}</p>
             <p className="client-username">{username}</p>
             <p className="client-createdAt">{createdAt}</p>
-            <CustomButton btnText="Edit"/>
+            <div className="client-edit-btn">
+                <CustomButton btnText="Edit"/>
+            </div>
         </div>
     );
 }
