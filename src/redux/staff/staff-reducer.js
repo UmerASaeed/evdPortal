@@ -4,7 +4,16 @@ const INITIAL_STATE =
 {
     StaffData:null,
     isfetching:false,
-    errorMessage:undefined
+    errorMessage:undefined,
+    addStaff:{
+        staffInfo:{
+
+        },
+        staffPerms:{
+
+        }
+    },
+    createStaff:false
 }
 
 const StaffReducer = ( state = INITIAL_STATE,action) =>
@@ -28,6 +37,18 @@ const StaffReducer = ( state = INITIAL_STATE,action) =>
             ...state,
             errorMessage:action.payload
         }    
+        case StaffActionTypes.UPDATE_STAFF_INFO:
+        return{
+            ...state,
+            addStaff:{
+                staffInfo:action.payload
+            }
+        } 
+        case StaffActionTypes.CREATE_STAFF:
+        return{
+            ...state,
+            createStaff:true
+        }      
         default:
             return state  
     }

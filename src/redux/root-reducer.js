@@ -6,19 +6,21 @@ import SectionReducer from "./section/section-Reducer"
 import ClientReducer from "./clients/client-reducer"
 import StaffReducer from "./staff/staff-reducer"
 import popUpReducer from "./popUp/popUp-reducer"
+import TelecomReducer from "./telecom/telecom-reducer"
 
 const persistConfig =
 {
     key:'root',
     storage,
-    whitelist:['section']
+    whitelist:['section','telecom']
 }
 
 const rootReducer = combineReducers({
     section:SectionReducer,
     clients:ClientReducer,
     staff:StaffReducer,
-    popUp:popUpReducer
+    popUp:popUpReducer,
+    telecom:TelecomReducer
 });
 
 export default persistReducer(persistConfig,rootReducer);

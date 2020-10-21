@@ -2,3 +2,10 @@
 {
     width: 1%;
 }
+
+.manageCat-PopUp
+{
+    position: absolute;
+    top: 35%;
+    left: 49%;
+}

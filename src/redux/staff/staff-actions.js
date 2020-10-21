@@ -23,3 +23,17 @@ export const FetchStaffFailed = (errorMessage) =>
     }
 }
 
+export const UpdateStaffInfo = (staffInfo) =>
+{
+    return{
+        type:StaffActionTypes.UPDATE_STAFF_INFO,
+        payload:staffInfo
+    }
+} 
+
+export const CreateStaff = () =>
+{
+    return{
+        type:StaffActionTypes.CREATE_STAFF
+    }
+}

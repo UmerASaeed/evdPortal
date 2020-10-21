@@ -1,0 +1,26 @@
+.manage-Prods
+{
+    display: flex;
+    width: 2200px;
+    margin-bottom: 3%;
+}
+
+
+.manageProds-seq,.outer-manageProds-nameEN,.outer-manageProds-category,.outer-manageProds-nameAr,.outer-manageProds-faceValue,.outer-manageProds-mrp,.outer-manageProds-snLength,.outer-manageProds-vnLength,.outer-manageProds-rechargeAr,.outer-manageProds-orderPoint,.manageProds-switchBtn,.manageProds-deleteBtn,.outer-manageProds-rechargeEn
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.manageProds-nameEN,.manageProds-category,.manageProds-nameAr,.manageProds-faceValue,.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-rechargeAr,.manageProds-orderPoint,.manageProds-rechargeEn
+{
+    width: 150px;
+    height: 25px;
+    text-align: center;
+}
+.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-orderPoint
+{
+    width: 100px;
+}

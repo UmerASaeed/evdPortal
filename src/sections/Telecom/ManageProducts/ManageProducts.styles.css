@@ -1,0 +1,22 @@
+.subHeader-telecom-manageProds
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.subText-telecom-manageProds
+{
+    margin-left: 30px;
+    color: #5495FD;
+    width: 70%;
+    font-family: "HelveticaNeueCyr-Light";
+}
+
+.options-telecom-manageProds
+{
+    display: flex;  
+    width:30% ;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 3%;
+}

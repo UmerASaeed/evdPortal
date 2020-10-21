@@ -1,0 +1,13 @@
+.vouchers-batchList
+{
+    width: 2800px;
+    display: flex;
+    margin: 30px 0px;
+}
+
+.batch-option
+{
+    width: 175px;
+    display: flex;
+    justify-content: center;
+}

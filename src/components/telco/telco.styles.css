@@ -1,0 +1,13 @@
+.telcos
+{
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.telco-sequence,.telco-name-en,.telco-name-ar,.telco-logo,.telco-edit-btn,.telco-delete-btn
+{
+    width: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

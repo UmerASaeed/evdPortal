@@ -1,0 +1,35 @@
+.ManageCat
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F8;
+    border: 1px solid #707070;
+    height: auto;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.ManageCat-popUpContent
+{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.displayCat
+{
+    width: 154px;
+    height: 20px;
+}
+
+.manageCat-title-vals
+{
+    font-family: HelveticaNeueCyr-Bold;
+}
+
+.addCat{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}

@@ -1,0 +1,25 @@
+.info-text
+{
+    font-family: "HelveticaNeueCyr-Light";
+    margin-left: 10%;
+}
+
+.s-n,.s-u,.s-p
+{
+    display: flex;
+    font-size: 16px;
+    margin-left: 10%;
+}
+
+.staff-n-inp,.staff-username-inp,.staff-pass
+{
+    width: 120px;
+}
+
+.staff-name-inp,.staff-user-inp,.staff-pass-inp
+{
+    margin-top: 12px;
+    height: 22px;
+    border: 1px solid #EAEAEA;
+    margin-left: 2%;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import {Route, Switch} from 'react-router-dom'
-
+import {Route, Switch,Redirect} from 'react-router-dom'
+import {connect} from "react-redux"
 import Navigator from "../../components/Navigator/navigator.component"
 import Header from "../../components/Header/header.component"
 import Clients from "../../sections/Clients/Clients-Main/clients"
@@ -10,10 +10,12 @@ import addStaff from "../../sections/Staff/AddStaff/addStaff"
 import Telecom from "../../sections/Telecom/Telecom-Main/Telecom"
 import ManageProducts from "../../sections/Telecom/ManageProducts/ManageProducts"
 import Addtelecom from "../../sections/Telecom/AddTelecom/Addtelecom"
+import AddProduct from "../../sections/Telecom/addProduct/addProduct"
+import VouchersMain from "../../sections/Vouchers/Vouchers-Main/vouchersMain"
 import {Login} from "../../utils/fetching"
 import "./adminPage.css"
 
-const AdminPage = () => 
+const AdminPage = ({currentSection}) => 
 {       
         useEffect(()=>
         {
@@ -29,7 +31,7 @@ const AdminPage = () =>
                         <Header/>   
                     </div>
                     <Switch>
-                        <Route exact path="/" render={()=><h1 className="filler">Select a Field!</h1>}/>
+                        <Route exact path="/" render={()=>currentSection ? <Redirect to = {`${currentSection}`}/> : null } />
                         <Route exact path="/Clients" component={Clients}/>
                         <Route exact path="/Clients/addClient" component={AddClient}/>
                         <Route exact path="/Staff" component={Staff} />
@@ -37,12 +39,21 @@ const AdminPage = () =>
                         <Route exact path="/Telecom" component={Telecom}/>
                         <Route exact path="/Telecom/ManageProducts" component={ManageProducts}/>
                         <Route exact path="/Telecom/addTelecom" component={Addtelecom}/>
+                        <Route exact path="/Telecom/ManageProducts/addProduct" component={AddProduct}/>
+                        <Route exact path="/Vouchers" component={VouchersMain}/>
                     </Switch>
                 </div>
             </div>
         );   
 }
 
-export default AdminPage;
+const mapStateToProps = state =>
+{
+    return{
+        currentSection:state.section.currentSection
+    }
+}
+
+export default connect(mapStateToProps)(AdminPage);
 
  

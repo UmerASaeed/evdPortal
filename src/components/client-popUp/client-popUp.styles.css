@@ -1,0 +1,55 @@
+.popUpContent,.popUpPaymentContent
+{
+  background-color: #F4F4F8;
+  border: 1px solid #707070;
+  height: 250px;
+}
+
+.popUpPaymentContent
+{
+    height: 320px;
+}
+
+.popUpClientName
+{
+    color: #000000 ;
+    font-family:HelveticaNeueCyr-Bold;
+    margin-left: 5%;
+}
+
+.wallet-fields
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+.wallet-field1,.wallet-field2,.wallet-fieldMid
+{
+    display: flex;
+    font-family: HelveticaNeueCyr-Light;
+    align-items: center;
+}
+
+
+.enter-amount,.field2-description,.enter-mode
+{
+    width: 138px;
+    height: 28px;
+    margin-left: 5%;
+}
+
+.enter-mode
+{
+    margin-left: 16%;
+}
+
+.field2-description
+{
+    margin-left: 23%;
+}
+
+.popUpBtn-addWallet
+{
+    margin-left: 45%;
+}
