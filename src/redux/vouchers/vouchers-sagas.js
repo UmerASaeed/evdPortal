@@ -1,7 +1,7 @@
 import {takeLatest,put,call,all} from "redux-saga/effects"
 import VoucherActionTypes from "./vouchers-types"
 import {FetchBatchSuccess,FetchBatchFailed,prodIdSuccess,uploadVoucherErrors,fetchVouchersSuccessful,fetchVouchersFailed,deleteVoucherSuccess,deleteVoucherFailed,ConfirmUploadStatus} from "./vouchers-actions"
-import {getBatchList,ScanVoucherFile,getProductId,fetchVouchers,deleteVouchers,CUpload} from "../../utils/fetching"
+import {getBatchList,ScanVoucherFile,getProductId,fetchVouchers,deleteVouchers,CUpload,updateBatchActivation,cancelBatch} from "../../utils/fetching"
 
 export function* fetchBatchStartAsync()
 {
@@ -69,6 +69,42 @@ export function* confirmUploadStart(data)
     }
 }
 
+export function* updateBatchActivAsync(data)
+{
+    try {
+        const resp = yield updateBatchActivation(data.payload)
+        if (resp.statusText === 'OK')
+        {
+            const batchList = yield getBatchList()
+            yield put(FetchBatchSuccess(batchList.data))
+        }
+        else
+        {
+            console.log("Error Updating Batch Status")
+        }
+    } catch (error) {
+        console.log("Error Updating Batch Status")
+    }
+}
+
+export function* CancelBatchStart(data)
+{
+    try {
+        const resp = yield cancelBatch(data.payload)
+        if (resp.statusText==='OK')
+        {
+            const batchList = yield getBatchList()
+            yield put(FetchBatchSuccess(batchList.data))
+        }
+        else
+        {
+            console.log('Error Deleting Batch')
+        }
+    } catch (error) {
+        console.log('Error Deleting Batch')
+    }
+}
+
 export function* fetchBatch()
 {
     yield takeLatest(VoucherActionTypes.FETCH_BATCHLIST_START,fetchBatchStartAsync)
@@ -99,7 +135,18 @@ export function* confirmUpload()
     yield takeLatest(VoucherActionTypes.CONFIRM_UPLOAD,confirmUploadStart)
 }
 
+export function* UpdateBatchActiv()
+{
+    yield takeLatest(VoucherActionTypes.UPDATE_BATCH_ACTIVATION,updateBatchActivAsync)
+}
+
+
+export function* CancelBatch() 
+{
+    yield takeLatest(VoucherActionTypes.CANCEL_BATCH,CancelBatchStart)
+}
+
 export function* VoucherSagas()
 {
-    yield all([call(fetchBatch),call(uploadVocuhers),call(getProdId),call(getVouchers),call(deleteVoucher),call(confirmUpload)])
+    yield all([call(fetchBatch),call(uploadVocuhers),call(getProdId),call(getVouchers),call(deleteVoucher),call(confirmUpload),call(UpdateBatchActiv),call(CancelBatch)])
 }

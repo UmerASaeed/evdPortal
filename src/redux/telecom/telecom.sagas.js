@@ -154,7 +154,7 @@ export function* updateProdActivAsync (data)
         const telcoProds = yield getTelcoProds(data.payload.telcoId)
         yield put(fetchTelecoProdsSuccessful(telcoProds))
     } catch (error) {
-        
+        console.log("Error Updating Product Status")
     }
 }
 

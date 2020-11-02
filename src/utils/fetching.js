@@ -430,3 +430,15 @@ export const updateProductActivation = async (data) =>
     const resp = await FetchData("http://localhost/StaffApp/api/product/UpdateActivation",data)
     return resp
 }
+
+export const updateBatchActivation = async (data) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/voucher/UpdateActivation",data)
+    return resp
+}
+
+export const cancelBatch = async (data) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/voucher/DeleteBatch",data)
+    return resp
+}

@@ -6,7 +6,7 @@ import {ReactComponent as Drag} from "../../assets/Drag.svg"
 import "./manageProds.styles.css"
 import { connect } from 'react-redux'
 
-const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,reorderPoint,active,updateProdActivation}) =>
+const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,reorderPoint,active,updateProdActivation,defaultSellingPrice}) =>
 {   
 
 
@@ -56,6 +56,9 @@ const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp
             </div>
             <div className="outer-manageProds-orderPoint">
                 <input type="text"  className="manageProds-orderPoint" defaultValue={reorderPoint} readOnly/>
+            </div>
+            <div className="outer-manageProds-dsp">
+                <input type="text"  className="manageProds-dsp" defaultValue={defaultSellingPrice} readOnly/>
             </div>
             <div className="manageProds-switchBtn" onClick={updateActivation}>
                 <SwitchBtn checkVal={active}/>

@@ -32,7 +32,7 @@ const VouchersMain = ({FetchBatchStart,batchList,editBatch,match}) =>
             {
                batchList ? batchList.map((batch,index)=>
                    {
-                     return <BatchList key={index} time={batch.time} telcoName={batch.telcoName} categoryName={batch.categoryName} nameEn={batch.nameEn} quantity={batch.quantity} used={batch.used} supplierName={batch.supplierName} totalPrice={batch.totalPrice} expiryDate={batch.expiryDate} fileName={batch.fileName} batchFilesID={batch.batchFilesId} />
+                     return <BatchList key={index} time={batch.time} telcoName={batch.telcoName} categoryName={batch.categoryName} nameEn={batch.nameEn} quantity={batch.quantity} used={batch.used} supplierName={batch.supplierName} totalPrice={batch.totalPrice} expiryDate={batch.expiryDate} fileName={batch.fileName} batchFilesID={batch.batchFilesId} active={batch.active}/>
                    }
                ) : null
             }  

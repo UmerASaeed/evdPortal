@@ -106,7 +106,7 @@ const VoucherReducer = (state = INITIAL_STATE , action) =>{
             deleteVoucherSuccess:true, 
             deleteVoucherStart:false    
         }
-        case VoucherActionTypes.DELETE_VOUCHERS_SUCCESS:
+        case VoucherActionTypes.DELETE_VOUCHERS_FAILED:
         return{
             ...state,
             deleteVoucherError:action.payload, 

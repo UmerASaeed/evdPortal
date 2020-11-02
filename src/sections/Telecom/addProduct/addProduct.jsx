@@ -8,7 +8,7 @@ import { Route ,Redirect} from "react-router-dom"
 
 const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,FetchCategoriesStart}) =>
 {
-    const [newProd,setNewProd] = useState({categoryId:`${categoryList ? categoryList[0].categoryId : null}`,NameEn:"",NameAr:"",Mrp:0,SerialNoLength:0,VoucherNoLength:0,RechargeInstructionsEn:"",RechargeInstructionsAr:""})
+    const [newProd,setNewProd] = useState({categoryId:`${categoryList ? categoryList[0].categoryId : null}`,NameEn:"",NameAr:"",Mrp:0,SerialNoLength:0,VoucherNoLength:0,RechargeInstructionsEn:"",RechargeInstructionsAr:"",reorderPoint:"",DefaultSellingPrice:""})
 
     useEffect(()=>
     {
@@ -32,7 +32,7 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
             TelCoId:addProdInfo.TelCoId,
             NameEn:newProd.NameEn,
             NameAr:newProd.NameAr,
-            DefaultSellingPrice:0,
+            DefaultSellingPrice:parseInt(newProd.DefaultSellingPrice),
             DataMbs:0,
             IsData:true,
             IsVoice:true,
@@ -45,7 +45,8 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
             CategoryId:parseInt(newProd.categoryId),
             SeqNo:addProdInfo.SeqNo,
             SerialNoLength:parseInt(newProd.SerialNoLength),
-            VoucherNoLength:parseInt(newProd.VoucherNoLength)
+            VoucherNoLength:parseInt(newProd.VoucherNoLength),
+            reorderPoint:parseInt(newProd.reorderPoint)
         }    
         AddProductStart(toAddObj)
   
@@ -100,7 +101,11 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
                 </div>
                 <div className="outer-manageProds-orderPoint1">
                     <div className="addProdTitle">{AddProds[8]}</div>
-                    <input type="number"  className="manageProds-orderPoint1" />
+                    <input type="number"  className="manageProds-orderPoint1" name="reorderPoint" onChange={HandleValChange}/>
+                </div>
+                <div className="outer-manageProds-orderPoint1">
+                    <div className="addProdTitle">{AddProds[9]}</div>
+                    <input type="number"  className="manageProds-orderPoint1" name="DefaultSellingPrice" onChange={HandleValChange} />
                 </div>
             </div>
             <div className="addProdBtn" onClick={addProduct}>

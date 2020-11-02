@@ -126,7 +126,7 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
             {
                 telcoProds ? telcoProds.map((prod,index)=>
                 {   return  <div key={prod.seqNo} onDragStart={(e)=>{dragStartHandle(e,prod.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,prod.seqNo)}} onDragEnd={handleDragEnd}>
-                                <ManageProdsComp key={index} telcoId={telcoId} productId={prod.productId} seqNo={prod.seqNo} categoryName={prod.categoryName} nameEn={prod.nameEn} nameAr={prod.nameAr} mrp={prod.mrp} serialNoLength={prod.serialNoLength} voucherNoLength={prod.voucherNoLength} rechargeInstructionsEn={prod.rechargeInstructionsEn} rechargeInstructionsAr={prod.rechargeInstructionsAr} reorderPoint={prod.reorderPoint} active={prod.active}/>                
+                                <ManageProdsComp key={index} telcoId={telcoId} productId={prod.productId} seqNo={prod.seqNo} categoryName={prod.categoryName} nameEn={prod.nameEn} nameAr={prod.nameAr} mrp={prod.mrp} serialNoLength={prod.serialNoLength} voucherNoLength={prod.voucherNoLength} rechargeInstructionsEn={prod.rechargeInstructionsEn} rechargeInstructionsAr={prod.rechargeInstructionsAr} reorderPoint={prod.reorderPoint} active={prod.active} defaultSellingPrice={prod.defaultSellingPrice}/>                
                             </div>
                 }) : <Spinner/>
             }
@@ -140,8 +140,7 @@ const mapStateToProps = state =>
     return{
         currentTelco:state.telecom.currentTelco,
         telcoProds:state.telecom.telcoProds,
-        productsUpdated:state.telecom.productsUpdated,
-        telcoProdsFetched:state.telecom.telcoProdsFetched
+        productsUpdated:state.telecom.productsUpdated
     }
 }
 

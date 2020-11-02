@@ -1,26 +1,26 @@
 .manage-Prods
 {
     display: flex;
-    width: 2200px;
+    width: 2400px;
     margin-bottom: 3%;
 }
 
 
-.manageProds-seq,.outer-manageProds-nameEN,.outer-manageProds-category,.outer-manageProds-nameAr,.outer-manageProds-faceValue,.outer-manageProds-mrp,.outer-manageProds-snLength,.outer-manageProds-vnLength,.outer-manageProds-rechargeAr,.outer-manageProds-orderPoint,.manageProds-switchBtn,.manageProds-deleteBtn,.outer-manageProds-rechargeEn
+.manageProds-seq,.outer-manageProds-nameEN,.outer-manageProds-category,.outer-manageProds-nameAr,.outer-manageProds-faceValue,.outer-manageProds-mrp,.outer-manageProds-snLength,.outer-manageProds-vnLength,.outer-manageProds-rechargeAr,.outer-manageProds-orderPoint,.manageProds-switchBtn,.manageProds-deleteBtn,.outer-manageProds-rechargeEn,.outer-manageProds-dsp
 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 230px;
 }
 
-.manageProds-nameEN,.manageProds-category,.manageProds-nameAr,.manageProds-faceValue,.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-rechargeAr,.manageProds-orderPoint,.manageProds-rechargeEn
+.manageProds-nameEN,.manageProds-category,.manageProds-nameAr,.manageProds-faceValue,.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-rechargeAr,.manageProds-orderPoint,.manageProds-rechargeEn,.manageProds-dsp
 {
-    width: 150px;
+    width: 160px;
     height: 25px;
     text-align: center;
 }
-.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-orderPoint
+.manageProds-mrp,.manageProds-snLength,.manageProds-vnLength,.manageProds-orderPoint,.manageProds-dsp
 {
     width: 100px;
 }

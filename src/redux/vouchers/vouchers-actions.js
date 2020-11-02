@@ -155,3 +155,19 @@ export const ClearProdIdError = () =>
         type:VoucherActionTypes.CLEAR_PRODUCT_ID
     }
 }
+
+export const updateBatchActivation = (batch) =>
+{
+    return{
+        type:VoucherActionTypes.UPDATE_BATCH_ACTIVATION,
+        payload:batch
+    }
+}
+
+export const CancelBatch = (batchId) =>
+{
+    return{
+        type:VoucherActionTypes.CANCEL_BATCH,
+        payload:batchId
+    }
+}
