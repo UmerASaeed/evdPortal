@@ -1,17 +1,19 @@
-.manage-Prods1
+.addProd-content
 {
+    background-color:#FFFFFF; 
+    height: 80%;
     display: flex;
-    width: 2200px;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 0% 3%;
+    overflow-x: scroll;
 }
-
 
 .manageProds-seq1,.outer-manageProds-nameEN1,.outer-manageProds-category1,.outer-manageProds-nameAr1,.outer-manageProds-faceValue1,.outer-manageProds-mrp1,.outer-manageProds-snLength1,.outer-manageProds-vnLength1,.outer-manageProds-rechargeAr1,.outer-manageProds-orderPoint1,.manageProds-switchBtn1,.outer-manageProds-rechargeEn1
 {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 244.4px;
+    flex-direction: column;
+    margin:30px 0px;
 }
 
 .manageProds-nameEN1,.manageProds-category1,.manageProds-nameAr1,.manageProds-faceValue1,.manageProds-mrp1,.manageProds-snLength1,.manageProds-vnLength1,.manageProds-rechargeAr1,.manageProds-orderPoint1,.manageProds-rechargeEn1
@@ -23,6 +25,15 @@
 .addProdBtn
 {
     position: absolute;
-    top: 50%;
-    left: 55%;
+    top: 92%;
+    left: 56%;
+}
+
+.addProdTitle
+{
+    font-family:HelveticaNeueCyr-Bold;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin-bottom: 10px;
 }

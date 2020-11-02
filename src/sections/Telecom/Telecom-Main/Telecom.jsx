@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import { useHistory } from 'react-router'
 import {TelecomTitles} from "../../../assets/titles"
-import {fetchTelecomStart,ToggleLogoUploaded,ToggleDeleteSuccessful,ToggleCategoryPopUp,ClearTelcoProducts} from "../../../redux/telecom/telecom-actions"
+import {fetchTelecomStart,ToggleLogoUploaded,ToggleDeleteSuccessful,ToggleCategoryPopUp,ClearTelcoProducts,updateTelecomStart} from "../../../redux/telecom/telecom-actions"
 
 import SubSection from "../../../components/subSection/subSection.component"
 import CustomButton from "../../../components/customButton/customButton.component"
@@ -11,62 +11,72 @@ import PopUp from "../../../components/popUp/popUp.component"
 
 import "./telecom.styles.css"
 
-const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,ToggleDeleteSuccessful,categoryPopUp,ToggleCategoryPopUp,ClearTelcoProducts}) =>
+const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,ToggleDeleteSuccessful,categoryPopUp,ToggleCategoryPopUp,ClearTelcoProducts,updateTelecomStart}) =>
 {
     const hisory = useHistory()
     const [search,setSearch] = useState("")
     let FilteredTelcos;
-    //const [telecomList,setTelcoList] = useState(telcoList)
     let draggedItem;
     let draggedOnItem;
 
 
-    // const dragStartHandle = (e,param) =>
-    // {
-    //     draggedItem = param
-    // }
+    const dragStartHandle = (e,param) =>
+    {
+        draggedItem = param
+    }
 
-    // const dragEnterHandle = (e,param) =>
-    // {
-    //     draggedOnItem = param  
-    // }
+    const dragEnterHandle = (e,param) =>
+    {
+        draggedOnItem = param  
+    }
 
-    // const handleDragEnd = () =>
-    // {
-        
-    //     if (draggedItem !== draggedOnItem)
-    //     {
-    //         setTelcoList(telecomList=>
-    //         {
-    //             let newList = JSON.parse(JSON.stringify(telecomList));
-    //             let temp1;
-    //             let temp2;
-    //             newList.forEach((telco,index) =>
-    //             {
-                    
-    //                 if (telco.seqNo === draggedItem)
-    //                 {
-    //                     temp1 = index
-    //                 }
+    const handleDragEnd = () =>
+    {
+        if (draggedItem !== draggedOnItem)
+        {
+            let newList = JSON.parse(JSON.stringify(telcoList));
+            let temp1;
+            let temp2;
+            newList.forEach((telco,index) =>
+            {
+                
+                if (telco.seqNo === draggedItem)
+                {
+                    temp1 = index
+                }
 
-    //                 if (telco.seqNo === draggedOnItem)
-    //                 {
-    //                     temp2 = index
-    //                 }
-    //             })
-    //             let temp3 = newList[temp1]
-    //             newList[temp1] = newList [temp2]
-    //             newList[temp2] = temp3
-              
+                if (telco.seqNo === draggedOnItem)
+                {
+                    temp2 = index
+                }
+            })
+            let temp3 = newList[temp1]
+            newList[temp1] = newList [temp2]
+            newList[temp2] = temp3
+            newList.forEach((telco,index)=>
+            {
+                telco.seqNo = index + 1
+            })
 
-    //             newList.forEach((telco,index)=>
-    //             {
-    //                 telco.seqNo = index + 1
-    //             })
-    //             return newList
-    //         })  
-    //     }
-    // }
+            newList.forEach((telco)=>
+            { 
+                 
+                let data ={
+                    size:newList.length,
+                    telco:null,
+                    fullList:newList
+                }   
+
+                data.telco = {
+                    TelCoID:telco.telCoId,
+                    name:telco.name,
+                    nameAra:telco.nameAra,
+                    seqNo:telco.seqNo
+                }
+                updateTelecomStart(data) 
+            })
+        }
+    }
 
     useEffect(()=>
     {
@@ -116,16 +126,16 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
                 </div>
             <SubSection titles={TelecomTitles}>
                 {
-                    //onDragStart={(e)=>{dragStartHandle(e,telco.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,telco.seqNo)}} onDragEnd={handleDragEnd}
+                    
                     telcoList ? FilteredTelcos.map((telco,index)=>
                     {
-                        return <div key={telco.seqNo} >
+                        return <div key={telco.seqNo} onDragStart={(e)=>{dragStartHandle(e,telco.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,telco.seqNo)}} onDragEnd={handleDragEnd} >
                                     <Telco key={index} seq={telco.seqNo} enName={telco.name} arName={telco.nameAra} imgSrc={"http://localhost/StaffApp/logos/" + `${telco.logoName}`} telcoId={telco.telCoId}/>
                                 </div>
                     }) : null
                 }
                 <div className="manageCat-PopUp">
-                    <PopUp header="Manage Categories" closeVal={categoryPopUp} popUpType="manageCategories"/>
+                    <PopUp header="Manage Categories" closeVal={!categoryPopUp} popUpType="manageCategories"/>
                 </div>
             </SubSection>
         </div>
@@ -148,7 +158,8 @@ const mapDispatchToProps = (dispatch) =>
         ToggleLogoUploaded:()=>dispatch(ToggleLogoUploaded()),
         ToggleDeleteSuccessful:()=>dispatch(ToggleDeleteSuccessful()),
         ToggleCategoryPopUp:()=>dispatch(ToggleCategoryPopUp()),
-        ClearTelcoProducts:()=>dispatch(ClearTelcoProducts())
+        ClearTelcoProducts:()=>dispatch(ClearTelcoProducts()),
+        updateTelecomStart:(telco)=>dispatch(updateTelecomStart(telco))
     }
 }
 

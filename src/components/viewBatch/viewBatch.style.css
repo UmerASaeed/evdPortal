@@ -1,0 +1,14 @@
+.viewBatch-content
+{
+    display: flex;
+    width: 2000px;
+    margin-top: 20px;
+}
+
+.cb,.viewBatch-seq,.viewBatch-sn,.viewBatch-vn,.viewBatch-seq,.viewBatch-status,.viewBatch-client,.viewBatch-ReferenceNo,.viewBatch-usedTime
+{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

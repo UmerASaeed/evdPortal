@@ -1,0 +1,143 @@
+.select-file-heading,.file-detail-heading
+{
+    font-size: 20px;
+    color: #5495FD;
+    font-family: "HelveticaNeueCyr-Medium";
+    margin-left: 10px;
+}
+.drop-voucher-file,.dropped-voucher-file
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #CECECE;
+    height: 200px;
+    margin: 0px 15px;
+}
+
+.dropped-voucher-file
+{
+    background-color: #E6E6E6;
+}
+
+.dropFile
+{
+    color: #5495FD;
+    font-size: 18px;
+    font-family: "HelveticaNeueCyr-Medium";
+}
+
+.file-details-options
+{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.uv-options
+{
+    display: flex;
+}
+
+.uv-option,.uv-option1
+{
+    height: 25px;
+}
+
+.uv-option1
+{
+    border: 1px solid red;
+}
+
+.uv-option-name,.uv-option-field
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.uv-header
+{
+    width: 130px;
+    margin-top: 5px;
+}
+
+.uv-scanFile-btn
+{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.uv-scan-result-content
+{
+    margin-left: 20px;
+}
+
+.warning-withinFiles,.warning-Files,.other-warnings
+{
+    border: 1px solid #FF4D4D;
+    display: inline-block;
+    background-color:#FFEBEB ;
+    padding: 10px;
+    width: 380px;
+}
+
+.uv-warning-text,.other-warning-text
+{
+    color: #FF4D4D;
+}
+
+.other-warnings
+{
+    margin-top: 15px;
+    width: auto;
+}
+.warning-withinFiles-filesInfo,.warning-filesInfo
+{
+    margin-top: 20px;
+    max-height: 150px;
+    overflow: scroll;
+}
+
+.warning-filesInfo
+{
+    max-height:300px;
+    overflow: scroll;
+}
+.warning1-headers,.warning2-headers
+{
+    display: flex;
+    width: 100%;
+}
+.warning1-header,.warning2-header
+{
+    min-width: 155.6px;
+    font-family: "HelveticaNeueCyr-Medium";
+    color: #5495FD;
+}
+.warning1-files,.warning2-files
+{
+    display: flex;
+    margin-top: 10px;
+}
+.w1-fileLine,.w1-fileSN,.w1-fileVN,.w2-file-option
+{
+    min-width: 155.6px;
+}
+.warning-Files
+{
+    margin-top: 20px;
+}
+
+.other-warnings
+{
+    margin-left: 2%;
+}
+.confirm-voucher-upload
+{
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+}

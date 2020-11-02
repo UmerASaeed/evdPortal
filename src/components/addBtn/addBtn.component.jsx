@@ -22,7 +22,7 @@ const AddBtn = ({clientName,purpose,id,name,purp,togglePopUp,closeVal,ClosePopUp
             {   
                purpose === "payment" ? 
                <div className={clientName === name && purp === "payment" ? "pop" : "popUpHidden" }>
-                    <PopUp header="Receive Payment" clientName={clientName} purpose="payment" id={id} closeVal={!closeVal}/> 
+                    <PopUp header="Receive Payment" clientName={clientName} purpose="payment" id={id} /> 
                 </div>
                :purpose === "wallet" ? 
                <div className={clientName === name && purp === "wallet" ? "pop" : "popUpHidden" }>

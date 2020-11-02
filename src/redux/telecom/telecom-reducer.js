@@ -1,10 +1,11 @@
-import { act } from "react-dom/test-utils"
 import TelecomActionTypes from "./telecom.types"
 
 const INITIAL_STATE = {
     telcoList:null,
+    telcoFetched:false,
     telcoProds:"",
     isFetching:false,
+    telcoProdsFetched:false,
     errorMessage:"",
     currentTelco:"",
     telcoCreated:false,
@@ -22,7 +23,8 @@ const INITIAL_STATE = {
     addingCategory:false,
     addingCategoryError:"",
     deletingCategory:false,
-    deletingCategoryError:""
+    deletingCategoryError:"",
+    productsUpdated:false
 }
 
 const TelecomReducer = (state = INITIAL_STATE,action) =>
@@ -50,7 +52,7 @@ const TelecomReducer = (state = INITIAL_STATE,action) =>
         case TelecomActionTypes.FETCH_TELCOPRODS_START_ASYNC:
         return{
             ...state,
-            isFetching:true
+            isFetching:true,
         }
         case TelecomActionTypes.FETCH_TELCOPRODS_SUCCESSFULL_ASYNC:
         return{
@@ -63,7 +65,8 @@ const TelecomReducer = (state = INITIAL_STATE,action) =>
         return{
             ...state,
             errorMessage:action.payload,
-            isFetching:false
+            isFetching:false,
+            telcoProdsFetched:false
         }
         case TelecomActionTypes.SET_CURRENT_TELCO:
         return{
@@ -187,6 +190,16 @@ const TelecomReducer = (state = INITIAL_STATE,action) =>
         return{
             ...state,
             telcoProds:""
+        }
+        case TelecomActionTypes.PRODUCTS_UPDATE_STATUS:
+        return{
+            ...state,
+            productsUpdated:false 
+        }
+        case TelecomActionTypes.UPDATE_TELECOM_LOCALLY:
+        return{
+            ...state,
+            telcoList:action.payload       
         }
         default:
             return state

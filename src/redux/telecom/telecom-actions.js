@@ -256,3 +256,35 @@ export const deleteCategoryFailed = (error) =>
         payload:error
     }
 }
+
+export const updateTelecomStart = (telco) =>
+{
+    return{
+        type:TelecomActionTypes.UPDATE_TELECOM_START,
+        payload:telco
+    }
+}
+
+
+export const updateTelecomProdStart = (telco) =>
+{
+    return{
+        type:TelecomActionTypes.UPDATE_TELECOMPROD_START,
+        payload:telco
+    }
+}
+
+export const updateProdActivation = (telco) =>
+{
+    return{
+        type:TelecomActionTypes.UPDATE_PROD_ACTIVATION,
+        payload:telco
+    }
+}
+
+export const productsUpdatedStatus = () =>
+{
+    return{
+        type:TelecomActionTypes.PRODUCTS_UPDATE_STATUS
+    }
+}

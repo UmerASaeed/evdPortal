@@ -13,7 +13,6 @@ const Addtelecom = ({telcos,createTelcoAction,telcoCreated,UploadLogo,logoUpload
     const isFirstRender = useRef(true)
     const isFirstRenderlogo = useRef(true)
     const hiddenFileInput = useRef(null)
-
     const handleChange = (e) =>
     {
         const {name,value}=e.target

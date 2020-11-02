@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {closePopUp} from "../../redux/popUp/popUp-actions"
+import {setEditBatch} from "../../redux/vouchers/vouchers-actions"
 import ManageCat from "../manageCategories/manageCategories.component"
+import EditBatch from "../editBatchDetails/editBatch.component"
 import ClientPopUp from "../client-popUp/clientPopUp.component"
 import "./popUp.styles.css"
 
-const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType}) =>
+const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType,setEditBatch}) =>
 {
    
     return(
@@ -18,12 +20,20 @@ const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType}) =>
                         popUpType === "manageCategories" ? null :  
                         <button className='cross-btn' onClick={()=>
                         {  
-                            ClosePopUp()
+                            if (popUpType === 'editBatch')
+                            {
+                                setEditBatch(false)
+                            }
+                            else
+                            {
+                                ClosePopUp()
+                            }
                         }}>X</button>
                     }
                 </div>
                 {
-                    popUpType === "manageCategories" ? <ManageCat/>
+                    popUpType === "manageCategories" ? <ManageCat/> 
+                    :popUpType === "editBatch" ? <EditBatch/>
                     :<ClientPopUp clientName={clientName} purpose={purpose} id={id}/>
                 }
               
@@ -36,7 +46,8 @@ const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType}) =>
 const mapDispatchToProps = dispatch =>
 {
     return{
-        ClosePopUp:()=>dispatch(closePopUp())    
+        ClosePopUp:()=>dispatch(closePopUp()),
+        setEditBatch:(status) => dispatch(setEditBatch(status))  
     }
 }
 

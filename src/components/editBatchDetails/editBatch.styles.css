@@ -1,0 +1,35 @@
+.EditBatch
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F8;
+    border: 1px solid #707070;
+    height: auto;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.editBatch-BatchName
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-family:HelveticaNeueCyr-Bold ;
+}
+
+.editBatch-expiryDate
+{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.eB-header
+{
+    width: 130px;
+}
+
+.eB-option
+{
+    height: 20px;
+}

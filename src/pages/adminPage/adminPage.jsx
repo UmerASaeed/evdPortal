@@ -12,7 +12,10 @@ import ManageProducts from "../../sections/Telecom/ManageProducts/ManageProducts
 import Addtelecom from "../../sections/Telecom/AddTelecom/Addtelecom"
 import AddProduct from "../../sections/Telecom/addProduct/addProduct"
 import VouchersMain from "../../sections/Vouchers/Vouchers-Main/vouchersMain"
+import UploadVouchers from "../../sections/Vouchers/Upload-Vouchers/upload-vouchers"
+import ViewBatch from "../../sections/Vouchers/viewBatch/viewBatch"
 import {Login} from "../../utils/fetching"
+
 import "./adminPage.css"
 
 const AdminPage = ({currentSection}) => 
@@ -41,6 +44,8 @@ const AdminPage = ({currentSection}) =>
                         <Route exact path="/Telecom/addTelecom" component={Addtelecom}/>
                         <Route exact path="/Telecom/ManageProducts/addProduct" component={AddProduct}/>
                         <Route exact path="/Vouchers" component={VouchersMain}/>
+                        <Route exact path="/Vouchers/UploadBatch" component={UploadVouchers}/>
+                        <Route exact path="/Vouchers/ViewBatch" component={ViewBatch}/>
                     </Switch>
                 </div>
             </div>

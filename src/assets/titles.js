@@ -4,3 +4,4 @@ export const TelecomTitles = ["Sequence","Name","Name (ar)","Logo" ,"Manage Prod
 export const ManageProds = ["Sequence","Category","Name(en)","Name (ar)","MRP","SN Length" ,"VN Length" ,"Recharge (EN)","Recharge (AR)" ,"Reorder Point" ,"Active","Delete"]
 export const AddProds = ["Category","Name(en)","Name (ar)","MRP","SN Length" ,"VN Length" ,"Recharge (EN)","Recharge (AR)" ,"Reorder Point" ]
 export const VouchersList = ["Time","Brand","Category","Product","Quantity","Used","Batch Name","Vendor","Cost","Total Cost","Expiry Date","File Name" ,"Active","Batch","Details","Cancel"]
+export const ViewBatchList= ["Delete?" ,"Sequence" ,"SN","VN","Status","Client","Reference #" , "Used Time"]

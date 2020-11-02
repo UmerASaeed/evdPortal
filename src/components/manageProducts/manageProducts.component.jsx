@@ -1,13 +1,29 @@
 import React from 'react'
 import SwitchBtn from "../Switch/switch.component"
 import CustomButton from "../customButton/customButton.component"
+import {updateProdActivation} from "../../redux/telecom/telecom-actions"
 import {ReactComponent as Drag} from "../../assets/Drag.svg"
 import "./manageProds.styles.css"
+import { connect } from 'react-redux'
 
-const ManageProdsComp = ({seqNo,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,active}) =>
-{
+const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,reorderPoint,active,updateProdActivation}) =>
+{   
+
+
+    const updateActivation = () =>
+    {
+        let telcoInfo = {
+            telco:{
+                Id:productId,
+                Activate:!active
+            },
+            telcoId:telcoId
+        }
+        updateProdActivation(telcoInfo)
+    }
+
     return(
-        <div className='manage-Prods'>
+        <div className='manage-Prods' draggable>
             <div className='manageProds-seq'>
                <Drag/>
                <p style={{marginLeft:"20px"}}>{seqNo}</p>
@@ -39,10 +55,10 @@ const ManageProdsComp = ({seqNo,categoryName,nameEn,nameAr,mrp,serialNoLength,vo
                 <input type="text"  className="manageProds-rechargeAr" defaultValue={rechargeInstructionsAr} readOnly/>
             </div>
             <div className="outer-manageProds-orderPoint">
-                <input type="text"  className="manageProds-orderPoint" defaultValue="filler" readOnly/>
+                <input type="text"  className="manageProds-orderPoint" defaultValue={reorderPoint} readOnly/>
             </div>
-            <div className="manageProds-switchBtn">
-                <SwitchBtn/>
+            <div className="manageProds-switchBtn" onClick={updateActivation}>
+                <SwitchBtn checkVal={active}/>
             </div>
             <div className="manageProds-deleteBtn">
                 <CustomButton btnText="Delete" del={true}/>
@@ -51,4 +67,12 @@ const ManageProdsComp = ({seqNo,categoryName,nameEn,nameAr,mrp,serialNoLength,vo
     );
 }
 
-export default ManageProdsComp;
+
+const mapDispatchToProps = dispatch =>
+{
+    return{
+        updateProdActivation:(telco) => dispatch(updateProdActivation(telco))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(ManageProdsComp);

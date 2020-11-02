@@ -27,22 +27,13 @@
     margin: 0% 25%;
 }
 
-.subSectionQuarter-addProds
-{
-    background-color:#FFFFFF; 
-    height: 35%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0% 3%;
-    overflow-x: scroll;
-}
 
-.titles,.manageProd-titles,.voucherstTitle
+.titles,.manageProd-titles,.voucherstTitle,.vbTitles
 {
     display: flex;
     font-family: "HelveticaNeueCyr-Bold";
 }
+
 
 .manageProd-titles
 {
@@ -51,7 +42,12 @@
 
 .voucherstTitle
 {
-    width: 2800px;
+    width: 3000px;
+}
+
+.vbTitles
+{
+    width: 2000px;
 }
 
 .dynamic-title

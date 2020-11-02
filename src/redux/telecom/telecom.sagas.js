@@ -1,13 +1,12 @@
 import {takeLatest,all,put,call} from "redux-saga/effects";
-import {fetchTelecomSuccessful,fetchTelecomFailed,fetchTelecoProdsSuccessful,fetchTelecoProdsFailed,TelcoCreated,UploadLogoSuccess,DeleteTelcoSuccessful,DeleteTelcoFailed,AddProductSuccess,AddProductFailed,FetchCategoriesSuccess,FetchCategoriesFailed,addCategorySuccess,AddCategoryFailed,deleteCategoryStart,deleteCategoryFailed, deleteCategorySuccess} from "./telecom-actions";
-import {getTelcos,getTelcoProds,CreateTelcoFetch,setLogo,DeleteTelco,AddProduct,fetchCategories,createCategory,deleteCategory} from "../../utils/fetching"
+import {fetchTelecomSuccessful,fetchTelecomFailed,fetchTelecoProdsSuccessful,fetchTelecoProdsFailed,TelcoCreated,UploadLogoSuccess,DeleteTelcoSuccessful,DeleteTelcoFailed,AddProductSuccess,AddProductFailed,FetchCategoriesSuccess,FetchCategoriesFailed,addCategorySuccess,AddCategoryFailed,deleteCategoryFailed, deleteCategorySuccess} from "./telecom-actions";
+import {getTelcos,getTelcoProds,CreateTelcoFetch,setLogo,DeleteTelco,AddProduct,fetchCategories,createCategory,deleteCategory,telcoUpdate,updateProductActivation,telcoProdUpdate} from "../../utils/fetching"
 import TelecomActionTypes from "./telecom.types";
-
 
 export function* fetchTelcosAsync(){
     try {
         const telcos = yield getTelcos()
-        yield put(fetchTelecomSuccessful(telcos.data))
+        yield put(fetchTelecomSuccessful(telcos))
 
     } catch (error) {
         yield put(fetchTelecomFailed(error.message))
@@ -19,7 +18,7 @@ export function* fetchTelcoProdsAsync(data)
     try {
         const telcoId=data.payload
         const telcoProds = yield getTelcoProds(telcoId)
-        yield put(fetchTelecoProdsSuccessful(telcoProds.data))
+        yield put(fetchTelecoProdsSuccessful(telcoProds))
     } catch (error) {
         yield put(fetchTelecoProdsFailed(error.message))
     }
@@ -33,7 +32,7 @@ export function* CreateTelco(data)
         {
             yield put(TelcoCreated(true))
             const telcos = yield getTelcos()
-            yield put(fetchTelecomSuccessful(telcos.data))
+            yield put(fetchTelecomSuccessful(telcos))
         }
     } catch (error) {
             yield put(TelcoCreated(false))
@@ -120,7 +119,44 @@ export function* DeleteCategoryStart(data)
     }
 }
 
+export function* updateTelcoAsync(data)
+{
+    try {
+        const resp = yield telcoUpdate(data.payload)
+        if (resp.success)
+        {
+            yield put(fetchTelecomSuccessful(resp.data))
+        }
+    } catch (error) {
+        yield put (fetchTelecomSuccessful(data.payload.fullList))
+    }
+    
+}
 
+export function* updateTelcoProdAsync(data)
+{
+    try {
+        const resp = yield telcoProdUpdate(data.payload)
+        if (resp.success)
+        {
+            yield put (fetchTelecoProdsSuccessful(resp.data))
+        }
+    } catch (error) {
+        yield put (fetchTelecoProdsSuccessful(data.payload.fullList))
+    }
+    
+}
+
+export function* updateProdActivAsync (data)
+{
+    try {
+        const resp = yield updateProductActivation(data.payload.telco)
+        const telcoProds = yield getTelcoProds(data.payload.telcoId)
+        yield put(fetchTelecoProdsSuccessful(telcoProds))
+    } catch (error) {
+        
+    }
+}
 
 export function* fetchTelcosStart()
 {
@@ -168,7 +204,22 @@ export function* DeleteCategory()
     yield takeLatest(TelecomActionTypes.DELETE_CATEGORY_START,DeleteCategoryStart)
 }
 
+export function* UpdateTelecomStart()
+{
+    yield takeLatest(TelecomActionTypes.UPDATE_TELECOM_START,updateTelcoAsync)
+}
+
+export function* UpdateTelecomProdStart()
+{
+    yield takeLatest(TelecomActionTypes.UPDATE_TELECOMPROD_START,updateTelcoProdAsync)
+}
+
+export function* UpdateProdActiv()
+{
+    yield takeLatest(TelecomActionTypes.UPDATE_PROD_ACTIVATION,updateProdActivAsync)
+}
+
 export function* TelecomSagas()
 {
-    yield all([call(fetchTelcosStart),call(fetchTelcoProdsStart),call(CreateTelcoStart),call(UploadLogoStart),call(DeleteTelcoStart),call(AddProductStart),call(FetchCategories),call(CreateCategory),call(DeleteCategory)])
+    yield all([call(fetchTelcosStart),call(fetchTelcoProdsStart),call(CreateTelcoStart),call(UploadLogoStart),call(DeleteTelcoStart),call(AddProductStart),call(FetchCategories),call(CreateCategory),call(DeleteCategory),call(UpdateTelecomStart),call(UpdateProdActiv),call(UpdateTelecomProdStart)])
 }

@@ -5,7 +5,7 @@ import {setCurrentTelco,DeleteTelcoStart} from "../../redux/telecom/telecom-acti
 import {ReactComponent as Drag} from "../../assets/Drag.svg"
 import "./telco.styles.css"
 
-const Telco = ({seq,enName,arName,imgSrc,telcoId,setCurrentTelco,DeleteTelcoStart}) =>
+const Telco = ({seq,enName,arName,imgSrc,telcoId,setCurrentTelco,DeleteTelcoStart,telcos}) =>
 {
     const telcoEditPressed= () =>
     {
@@ -20,8 +20,25 @@ const Telco = ({seq,enName,arName,imgSrc,telcoId,setCurrentTelco,DeleteTelcoStar
     const DeleteTelco = () =>
     {
         let telcoInfo = {
-            "telCoId": telcoId
+            telcos:null,
+            telcoDelete:{
+                "telCoId": telcoId
+            }
         } 
+        let newList = telcos.filter(telco => 
+        {
+            if (telco.telCoId!==telcoId)
+            {
+                return telco
+            }
+        })
+
+        newList.forEach((telco,index) =>
+        {
+            telco.seqNo  = index + 1
+        })
+        telcoInfo.telcos = newList
+        telcoInfo.size = newList.length
         DeleteTelcoStart(telcoInfo)
     }
 
@@ -46,6 +63,13 @@ const Telco = ({seq,enName,arName,imgSrc,telcoId,setCurrentTelco,DeleteTelcoStar
     )
 }
 
+const mapStateToProps = state =>
+{
+    return{
+        telcos:state.telecom.telcoList
+    }
+}
+
 const mapDispatchToProps = (dispatch) =>
 {
     return{
@@ -54,4 +78,4 @@ const mapDispatchToProps = (dispatch) =>
     }
 }
 
-export default connect(null,mapDispatchToProps)(Telco)
+export default connect(mapStateToProps,mapDispatchToProps)(Telco)
