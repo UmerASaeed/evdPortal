@@ -50,7 +50,7 @@ const Clients = ({fetchClients,clients,isfetching}) =>
                     ? <Spinner/>
                     : clients ? FilteredClients.map((client,index) =>
                     {
-                    return <Client key ={index} id={client.customerId} fullName={client.fullName} currentCredit={client.currentCredit} paymentBalance={client.paymentBalance} lastLogInAt={client.lastLogInAt} username="filler" createdAt={client.createdAt}/>
+                    return <Client key ={index} id={client.customerId} fullName={client.fullName} currentCredit={client.currentCredit} paymentBalance={client.paymentBalance} lastLogInAt={client.lastLogInAt} username={client.userName} createdAt={client.createdAt}/>
                     } ) :null
                 }
             </SubSection>

@@ -1,5 +1,4 @@
 import axios from "axios"
-import { retry } from "redux-saga/effects"
 import {store} from "../redux/store"
 
 export const Login = async (credentials) =>
@@ -37,7 +36,7 @@ export const getClients = async() =>
         {
             headers: { Authorization: `Bearer ${store.getState().login.token}` }
         }
-        return axios.post("http://staff.evdportal.com/api/Customer/List",{},options1)  
+        return axios.post("http://localhost/StaffApp/api/Customer/List",{},options1)  
     } catch (error) {
         console.log("Error Getting Clients")
     }
@@ -50,7 +49,7 @@ export const getStaff = async() =>
         {
             headers: { Authorization: `Bearer ${store.getState().login.token}` }
         }
-       return axios.post("http://staff.evdportal.com/api/User/List",{},options1)
+       return axios.post("http://localhost/StaffApp/api/User/List",{},options1)
     } catch (error) {
         console.log("Error Getting Clients")
     }
@@ -208,11 +207,12 @@ export const telcoUpdate =  async (data) =>
             returnObj.success = true
             return returnObj
         }
-        else
-        {
-            returnObj.success = false
-            return returnObj
-        }
+    }
+    else
+    {
+        let returnObj={}
+        returnObj.success = false
+        return returnObj
     }
 }
 
@@ -224,10 +224,11 @@ export const telcoProdUpdate =  async (data) =>
     const resp = await FetchData("http://localhost/StaffApp/api/product/Update",data.telco)
     if (resp.statusText === "OK")
     {
-        let returnObj={}
+        
         telcoProdListUpdate = telcoProdListUpdate + 1
         if (telcoProdListUpdate === data.size)
         {
+            let returnObj={}
             telcoProdListUpdate = 0;
             let telcoObj={}
             data.fullList.forEach((telco)=>
@@ -244,14 +245,14 @@ export const telcoProdUpdate =  async (data) =>
             returnObj.success = true
             return returnObj
         }
-        else
-        {
-            returnObj.success = false
-            return returnObj
-        }
+    }
+    else
+    {
+        let returnObj={}
+        returnObj.success = false
+        return returnObj
     }
 }
-
 
 export const DeleteTelco = async (telcoInfo) =>
 {
@@ -398,9 +399,9 @@ export const getProductId = async (data) =>
 {
     try {
         const telcos = await getTelcos()
-        const telco = telcos.data.filter(telco => telco.name === data.telecom)
+        const telco = telcos.filter(telco => telco.name === data.telecom)
         const products = await getTelcoProds(telco[0].telCoId)
-        const product = products.data.filter(prod=>prod.nameEn === data.product)
+        const product = products.filter(prod=>prod.nameEn === data.product)
         return product[0].productId
     } catch (error) {
         return "No such Brand or Product"
@@ -440,5 +441,70 @@ export const updateBatchActivation = async (data) =>
 export const cancelBatch = async (data) =>
 {
     const resp = await FetchData("http://localhost/StaffApp/api/voucher/DeleteBatch",data)
+    return resp
+}
+
+export const fetchClientPrices = async () =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Offer/List",{})
+    return resp
+}
+
+export const RemoveOffer = async (offer) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Offer/RemoveOffers",offer)
+    return resp
+}
+
+export const UpdateOffers = async (offers) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Offer/UpdateOffers",offers)
+    return resp
+}
+
+export const delTelcoProd = async (id) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/product/Delete",id)
+    return resp
+}
+
+export const fetchRestList = async () =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/SaleRestriction/List",{})
+    return resp
+}
+
+export const fetchProdStock = async(data) =>
+{
+    const telco = await FetchData("http://localhost/StaffApp/api/Telco/List",{})
+    let telcoId = null
+    telco.data.forEach((telco)=>
+    {
+        if (telco.name === data.telcoName)
+        {
+            telcoId = telco.telCoId
+        }
+    })
+    const prodDetails = await FetchData("http://localhost/StaffApp/api/product/ListDetails",telcoId)
+    let ProdStock = null
+    prodDetails.data.forEach(prod=>
+    {
+        if(prod.productId === data.productId)
+        {
+            ProdStock = prod.stock
+        } 
+    })
+    return ProdStock
+}
+
+export const createNewRestriction = async (data) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/SaleRestriction/CreateSaleRestriction",data)
+    return resp
+}
+
+export const cancelRestriction = async (id) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/SaleRestriction/RemoveSaleRestriction",id)
     return resp
 }

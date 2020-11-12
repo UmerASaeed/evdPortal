@@ -282,9 +282,27 @@ export const updateProdActivation = (telco) =>
     }
 }
 
-export const productsUpdatedStatus = () =>
+export const productsUpdatedStatus = (status) =>
 {
     return{
-        type:TelecomActionTypes.PRODUCTS_UPDATE_STATUS
+        type:TelecomActionTypes.PRODUCTS_UPDATE_STATUS,
+        payload:status
     }
 }
+
+export const deleteTelcoProduct = (id) =>
+{
+    return{
+        type:TelecomActionTypes.DELETE_TELCO_PROD,
+        payload:id
+    }
+}
+
+
+export const deleteTelcoProductStatus = (status) =>
+{
+    return{
+        type:TelecomActionTypes.DELETE_TELCO_PROD_STATUS,
+        payload:status
+    }
+} 

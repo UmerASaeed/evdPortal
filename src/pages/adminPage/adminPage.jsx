@@ -14,6 +14,9 @@ import AddProduct from "../../sections/Telecom/addProduct/addProduct"
 import VouchersMain from "../../sections/Vouchers/Vouchers-Main/vouchersMain"
 import UploadVouchers from "../../sections/Vouchers/Upload-Vouchers/upload-vouchers"
 import ViewBatch from "../../sections/Vouchers/viewBatch/viewBatch"
+import Prices from "../../sections/Prices/Prices-Main"
+import Restrictions from "../../sections/Restrictions/Restrictions-Main"
+import CreateRestriction from  "../../sections/Restrictions/createRestriction/CreateRestriction"
 import {Login} from "../../utils/fetching"
 
 import "./adminPage.css"
@@ -46,6 +49,9 @@ const AdminPage = ({currentSection}) =>
                         <Route exact path="/Vouchers" component={VouchersMain}/>
                         <Route exact path="/Vouchers/UploadBatch" component={UploadVouchers}/>
                         <Route exact path="/Vouchers/ViewBatch" component={ViewBatch}/>
+                        <Route exact path="/Prices" component={Prices}/>
+                        <Route exact path="/Restrictions" component={Restrictions}/>
+                        <Route exact path="/Restrictions/NewRestriction" component={CreateRestriction}/>
                     </Switch>
                 </div>
             </div>

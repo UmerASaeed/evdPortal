@@ -1,6 +1,6 @@
 import {takeLatest,all,put,call} from "redux-saga/effects";
-import {fetchTelecomSuccessful,fetchTelecomFailed,fetchTelecoProdsSuccessful,fetchTelecoProdsFailed,TelcoCreated,UploadLogoSuccess,DeleteTelcoSuccessful,DeleteTelcoFailed,AddProductSuccess,AddProductFailed,FetchCategoriesSuccess,FetchCategoriesFailed,addCategorySuccess,AddCategoryFailed,deleteCategoryFailed, deleteCategorySuccess} from "./telecom-actions";
-import {getTelcos,getTelcoProds,CreateTelcoFetch,setLogo,DeleteTelco,AddProduct,fetchCategories,createCategory,deleteCategory,telcoUpdate,updateProductActivation,telcoProdUpdate} from "../../utils/fetching"
+import {fetchTelecomSuccessful,fetchTelecomFailed,fetchTelecoProdsSuccessful,fetchTelecoProdsFailed,TelcoCreated,UploadLogoSuccess,DeleteTelcoSuccessful,DeleteTelcoFailed,AddProductSuccess,AddProductFailed,FetchCategoriesSuccess,FetchCategoriesFailed,addCategorySuccess,AddCategoryFailed,deleteCategoryFailed, deleteCategorySuccess,deleteTelcoProductStatus,productsUpdatedStatus} from "./telecom-actions";
+import {getTelcos,getTelcoProds,CreateTelcoFetch,setLogo,DeleteTelco,AddProduct,fetchCategories,createCategory,deleteCategory,telcoUpdate,updateProductActivation,telcoProdUpdate,delTelcoProd} from "../../utils/fetching"
 import TelecomActionTypes from "./telecom.types";
 
 export function* fetchTelcosAsync(){
@@ -137,12 +137,11 @@ export function* updateTelcoProdAsync(data)
 {
     try {
         const resp = yield telcoProdUpdate(data.payload)
-        if (resp.success)
-        {
-            yield put (fetchTelecoProdsSuccessful(resp.data))
-        }
+        const telcoProds = yield getTelcoProds(data.payload.telcoId)
+        yield put(fetchTelecoProdsSuccessful(telcoProds))
+        yield put(productsUpdatedStatus(true))
     } catch (error) {
-        yield put (fetchTelecoProdsSuccessful(data.payload.fullList))
+         yield put (fetchTelecoProdsSuccessful(data.payload.fullList))
     }
     
 }
@@ -155,6 +154,22 @@ export function* updateProdActivAsync (data)
         yield put(fetchTelecoProdsSuccessful(telcoProds))
     } catch (error) {
         console.log("Error Updating Product Status")
+    }
+}
+
+export function* deleteTelcoProdAsync(data)
+{
+    try {
+        const resp = yield delTelcoProd(data.payload.prodID)
+        if(resp.statusText==='OK')
+        {
+            const telcoId=data.payload.telcoID
+            const telcoProds = yield getTelcoProds(telcoId)
+            yield put(fetchTelecoProdsSuccessful(telcoProds))
+            yield put(deleteTelcoProductStatus(true))   
+        }
+    } catch (error) {
+        
     }
 }
 
@@ -219,7 +234,12 @@ export function* UpdateProdActiv()
     yield takeLatest(TelecomActionTypes.UPDATE_PROD_ACTIVATION,updateProdActivAsync)
 }
 
+export function* deleteTelcoProd()
+{
+    yield takeLatest(TelecomActionTypes.DELETE_TELCO_PROD,deleteTelcoProdAsync)
+}
+
 export function* TelecomSagas()
 {
-    yield all([call(fetchTelcosStart),call(fetchTelcoProdsStart),call(CreateTelcoStart),call(UploadLogoStart),call(DeleteTelcoStart),call(AddProductStart),call(FetchCategories),call(CreateCategory),call(DeleteCategory),call(UpdateTelecomStart),call(UpdateProdActiv),call(UpdateTelecomProdStart)])
+    yield all([call(fetchTelcosStart),call(fetchTelcoProdsStart),call(CreateTelcoStart),call(UploadLogoStart),call(DeleteTelcoStart),call(AddProductStart),call(FetchCategories),call(CreateCategory),call(DeleteCategory),call(UpdateTelecomStart),call(UpdateProdActiv),call(UpdateTelecomProdStart),call(deleteTelcoProd)])
 }

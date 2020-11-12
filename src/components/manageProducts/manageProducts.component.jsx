@@ -1,14 +1,13 @@
 import React from 'react'
 import SwitchBtn from "../Switch/switch.component"
 import CustomButton from "../customButton/customButton.component"
-import {updateProdActivation} from "../../redux/telecom/telecom-actions"
+import {updateProdActivation,deleteTelcoProduct} from "../../redux/telecom/telecom-actions"
 import {ReactComponent as Drag} from "../../assets/Drag.svg"
 import "./manageProds.styles.css"
 import { connect } from 'react-redux'
 
-const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,reorderPoint,active,updateProdActivation,defaultSellingPrice}) =>
+const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp,serialNoLength,voucherNoLength,rechargeInstructionsEn,rechargeInstructionsAr,reorderPoint,active,updateProdActivation,defaultSellingPrice,deleteTelcoProduct}) =>
 {   
-
 
     const updateActivation = () =>
     {
@@ -20,6 +19,15 @@ const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp
             telcoId:telcoId
         }
         updateProdActivation(telcoInfo)
+    }
+
+    const deleteProd = () =>
+    {
+        let data = {
+            prodID:productId,
+            telcoID:telcoId
+        }
+        deleteTelcoProduct(data)
     }
 
     return(
@@ -63,7 +71,7 @@ const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp
             <div className="manageProds-switchBtn" onClick={updateActivation}>
                 <SwitchBtn checkVal={active}/>
             </div>
-            <div className="manageProds-deleteBtn">
+            <div className="manageProds-deleteBtn" onClick={deleteProd}>
                 <CustomButton btnText="Delete" del={true}/>
             </div>
         </div>
@@ -74,7 +82,8 @@ const ManageProdsComp = ({seqNo,telcoId,productId,categoryName,nameEn,nameAr,mrp
 const mapDispatchToProps = dispatch =>
 {
     return{
-        updateProdActivation:(telco) => dispatch(updateProdActivation(telco))
+        updateProdActivation:(telco) => dispatch(updateProdActivation(telco)),
+        deleteTelcoProduct:(id) => dispatch(deleteTelcoProduct(id))
     }
 }
 

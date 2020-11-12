@@ -33,13 +33,7 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
             NameEn:newProd.NameEn,
             NameAr:newProd.NameAr,
             DefaultSellingPrice:parseInt(newProd.DefaultSellingPrice),
-            DataMbs:0,
-            IsData:true,
-            IsVoice:true,
-            Minutes:0,
-            DoNotSell:true,
             Mrp:parseInt(newProd.Mrp),
-            Sms:0,
             RechargeInstructionsEn:newProd.RechargeInstructionsEn,
             RechargeInstructionsAr:newProd.RechargeInstructionsAr,
             CategoryId:parseInt(newProd.categoryId),
@@ -47,7 +41,7 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
             SerialNoLength:parseInt(newProd.SerialNoLength),
             VoucherNoLength:parseInt(newProd.VoucherNoLength),
             reorderPoint:parseInt(newProd.reorderPoint)
-        }    
+        }   
         AddProductStart(toAddObj)
   
     }

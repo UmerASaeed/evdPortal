@@ -18,8 +18,7 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
     let FilteredTelcos;
     let draggedItem;
     let draggedOnItem;
-
-
+    
     const dragStartHandle = (e,param) =>
     {
         draggedItem = param
@@ -27,7 +26,7 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
 
     const dragEnterHandle = (e,param) =>
     {
-        draggedOnItem = param  
+        draggedOnItem = param
     }
 
     const handleDragEnd = () =>
@@ -99,7 +98,7 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
 
     const filterTelcos = (e) =>
     {
-        setSearch(e.target.value)
+       setSearch(e.target.value)
     }
 
     if (telcoList)
@@ -135,7 +134,7 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
                     }) : null
                 }
                 <div className="manageCat-PopUp">
-                    <PopUp header="Manage Categories" closeVal={!categoryPopUp} popUpType="manageCategories"/>
+                    <PopUp header="Manage Categories" closeVal={!categoryPopUp} popUpType="manageCategories" togglePopUp={ToggleCategoryPopUp}/>
                 </div>
             </SubSection>
         </div>

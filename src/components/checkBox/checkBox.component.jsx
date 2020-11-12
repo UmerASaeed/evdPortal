@@ -2,9 +2,10 @@ import React,{useState} from "react"
 import {ReactComponent as Tick} from "../../assets/check.svg" 
 import "./checkBox.styles.css"
 
-const CheckBox = () =>
+const CheckBox = ({status,checkedVal}) =>
 {
-    const [checked,setChecked] = useState(false)
+    const [checked,setChecked] = useState(status ? checkedVal : false)
+    
     return(
         <div className={checked ? "checked" : "checkBox"} onClick={()=>{setChecked(!checked)}}>
             {

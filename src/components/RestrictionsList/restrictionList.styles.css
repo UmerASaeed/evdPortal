@@ -1,0 +1,13 @@
+.resList
+{
+    width: 2000px;
+    display: flex;
+    margin: 20px 0px;
+}
+
+.widthAdj
+{
+    width: 222.2px;
+    display: flex;
+    justify-content: center;
+}

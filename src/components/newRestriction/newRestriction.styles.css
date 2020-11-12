@@ -1,0 +1,49 @@
+.prods-newRest
+{
+    margin: 20px 0px;
+    width: 1200px;
+    height: auto;
+    display: flex;
+    overflow: scroll;
+}
+
+.prods-newRest-val1,.prods-newRest-val2
+{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prods-newRest-val
+{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cName-newRest,.client-maq
+{
+    display: flex;
+    justify-content: center;
+    width: 300px;
+}
+
+
+.prod-dropDown,.prod-dropDown-grayed
+{
+    height: 30px;
+    width: 150px;
+}
+
+.prod-dropDown-grayed
+{
+    border: 1px solid #EAEAEA;
+    color:#A8A8A8 ;
+}
+
+.newRest-prod-val-grayed
+{
+    color: #A8A8A8;
+}

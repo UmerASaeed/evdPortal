@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
+import {FetchCategoriesStart,toggleAddCategory,addCategoryStart,deleteCategoryStart} from "../../redux/telecom/telecom-actions"
 import { connect } from "react-redux"
 import CustomButton from "../customButton/customButton.component"
-import {FetchCategoriesStart,toggleAddCategory,addCategoryStart,deleteCategoryStart} from "../../redux/telecom/telecom-actions"
+import {ReactComponent as Drag} from "../../assets/Drag.svg"
 import "./manageCategories.styles.css"
 
 const ManageCat = ({FetchCategoriesStart,categories,addingCategory,toggleAddCategory,addCategoryStart,deleteCategoryStart,deletingCat}) =>
@@ -60,6 +61,13 @@ const ManageCat = ({FetchCategoriesStart,categories,addingCategory,toggleAddCate
             : categories ? categories.map((category,index)=>
             {
                 return <div className="ManageCat-popUpContent" key={index}>
+                            <div className="ManageCatName">
+                                <p className="manageCat-title-vals">Seq</p>
+                                <div className="manageCat-seq">
+                                    <Drag/>
+                                    <div className="manageCat-seqNo">1</div>
+                                </div>
+                            </div>
                             <div className="ManageCatName">
                                 <p className="manageCat-title-vals">Name</p>
                                 <input type='text' defaultValue={`${category.name}`} className="displayCat" readOnly/>

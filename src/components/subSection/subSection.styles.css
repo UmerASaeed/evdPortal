@@ -28,7 +28,7 @@
 }
 
 
-.titles,.manageProd-titles,.voucherstTitle,.vbTitles
+.titles,.manageProd-titles,.voucherstTitle,.vbTitles,.ResTitle
 {
     display: flex;
     font-family: "HelveticaNeueCyr-Bold";
@@ -50,6 +50,11 @@
     width: 2000px;
 }
 
+.ResTitle
+{
+    width:  2000px;
+}
+
 .dynamic-title
 {
     display: flex;
@@ -63,11 +68,11 @@
     margin-left: 60%;
 }
 
-
 .subSectionQuarter-content
 {
     height: 100%;
 }
+
 
 @media screen and (max-width:1430px){
 

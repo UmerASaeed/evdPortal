@@ -1,0 +1,80 @@
+.createRest-content
+{
+    background-color: white;
+    height: 80%;
+    margin: 10px 60px;
+    overflow: scroll;
+}
+
+.subText-newRest
+{
+    margin-left: 150px;
+}
+
+.createRest-saveQouta
+{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;   
+}
+
+.newRest-header-options
+{
+    display: flex;
+    padding: 20px 5%;
+    height: 10%;
+}
+
+.newRest-reason-option
+{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    margin:0px 20px
+}
+
+.nr-reasonInput
+{
+    margin-left: 20px;
+    width: 138px;
+    height: 28px;
+}
+
+.newRest-content
+{
+    height: 75%;
+    display: flex;
+    overflow: scroll;
+}
+
+.newRest-prodSec
+{
+    height: 100%;
+    width: 90%;
+    overflow: scroll;
+}
+
+.newRest-prodTitles
+{
+    display: flex;
+    font-size: 20px;
+    width: 1200px;
+    font-family:"HelveticaNeueCyr-Bold";
+}
+
+.newRest-prodTitle1,.newRest-prodTitle2,.newRest-prodTitle3,.newRest-prodTitle4
+{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.addProd-newRest
+{
+    display: flex;   
+    width: 40%;
+    margin-top: 10px;
+    justify-content: center;
+}
+

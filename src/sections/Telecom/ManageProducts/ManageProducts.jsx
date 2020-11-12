@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory ,withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import {ManageProds} from "../../../assets/titles"
@@ -6,21 +6,57 @@ import SubSection from "../../../components/subSection/subSection.component"
 import CustomButton from "../../../components/customButton/customButton.component"
 import ManageProdsComp from "../../../components/manageProducts/manageProducts.component"
 import Spinner from "../../../components/spinner/spinner.component"
-import {fetchTelecoProdsStart,UpdateAddProd,ProductCreated,updateTelecomProdStart,productsUpdatedStatus} from "../../../redux/telecom/telecom-actions"
+import {fetchTelecoProdsStart,UpdateAddProd,ProductCreated,updateTelecomProdStart,productsUpdatedStatus,deleteTelcoProductStatus} from "../../../redux/telecom/telecom-actions"
 import "./ManageProducts.styles.css"
 
-const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match,UpdateAddProd,ProductCreated,updateTelecomProdStart,productsUpdated,productsUpdatedStatus,telcoProdsFetched}) =>
+const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match,UpdateAddProd,ProductCreated,updateTelecomProdStart,productsUpdated,productsUpdatedStatus,telcoProdsFetched,productDelStatus,deleteTelcoProductStatus}) =>
 {
     const history = useHistory()
     let draggedItem;
     let draggedOnItem;
 
+    const getSeqNo = () =>
+    {
+        if (telcoProds)
+        {
+            if (telcoProds.length >= 1)
+            {
+                let newArr = JSON.parse(JSON.stringify(telcoProds))
+                let lastEl = newArr.pop()
+                return lastEl.seqNo + 1
+            }
+            return 1;
+        }    
+    }
+
     useEffect(()=>
     {
         getProds(telcoId)
+    },[])
+
+    useEffect(()=>
+    {
+        let addProdInfo={
+            TelCoId:telcoId,
+            SeqNo:getSeqNo()
+        }
+        UpdateAddProd(addProdInfo)
+    },[getSeqNo,telcoId])
+
+    useEffect(()=>
+    {
         ProductCreated()
-    },[telcoId,getProds])
+    },[])
     
+    useEffect(()=>
+    {
+        if (productsUpdated)
+        {
+            productsUpdatedStatus(false)
+            history.go()
+        }
+    },[productsUpdated])
+
     const dragStartHandle = (e,param) =>
     {
         draggedItem = param
@@ -30,6 +66,51 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
     {
         draggedOnItem = param  
     }
+
+    const updateProductsAfterDeletion = (telcoProdss) =>
+    {
+        let newList = JSON.parse(JSON.stringify(telcoProdss));
+        newList.forEach((prod,index)=>
+        {
+            prod.seqNo = index + 1
+        })
+
+        newList.forEach((telco)=>
+        { 
+                
+            let data ={
+                size:newList.length,
+                telco:null,
+                fullList:newList,
+                telcoId:telcoId
+            }   
+
+            data.telco = {
+                ProductID:telco.productId,
+                NameEn:telco.nameEn,
+                NameAr:telco.nameAr,
+                RechargeInstructionsEn:telco.rechargeInstructionsEn,
+                RechargeInstructionsAr:telco.rechargeInstructionsAr,
+                CategoryId:telco.categoryId,
+                seqNo:telco.seqNo,
+                Mrp:telco.mrp,
+                SerialNoLength:telco.serialNoLength,
+                VoucherNoLength:telco.voucherNoLength,
+                reorderPoint:telco.reorderPoint,
+                defaultSellingPrice:telco.defaultSellingPrice,
+            }
+            updateTelecomProdStart(data)  
+        })
+    }
+
+    useEffect(()=>
+    {
+        if(productDelStatus)
+        {  
+            updateProductsAfterDeletion(telcoProds)
+            deleteTelcoProductStatus(false)
+        }
+    },[productDelStatus])
 
     const handleDragEnd = () =>
     {
@@ -60,14 +141,14 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
                 prod.seqNo = index + 1
             })
 
-
             newList.forEach((telco)=>
             { 
                  
                 let data ={
                     size:newList.length,
                     telco:null,
-                    fullList:newList
+                    fullList:newList,
+                    telcoId:telcoId
                 }   
 
                 data.telco = {
@@ -77,10 +158,14 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
                     RechargeInstructionsEn:telco.rechargeInstructionsEn,
                     RechargeInstructionsAr:telco.rechargeInstructionsAr,
                     CategoryId:telco.categoryId,
-                    seqNo:telco.seqNo
+                    seqNo:telco.seqNo,
+                    Mrp:telco.mrp,
+                    SerialNoLength:telco.serialNoLength,
+                    VoucherNoLength:telco.voucherNoLength,
+                    reorderPoint:telco.reorderPoint,
+                    defaultSellingPrice:telco.defaultSellingPrice,
                 }
-                updateTelecomProdStart(data)
-                
+                updateTelecomProdStart(data)  
             })
             
         }
@@ -91,28 +176,6 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
         history.push(`${match.path}/addProduct`)
     }
 
-    const getSeqNo = () =>
-    {
-        if (telcoProds)
-        {
-            if (telcoProds.length >= 1)
-            {
-                let newArr = JSON.parse(JSON.stringify(telcoProds))
-                let lastEl = newArr.pop()
-                return lastEl.seqNo + 1
-            }
-            return 1;
-        }    
-    }
-
-    useEffect(()=>
-    {
-        let addProdInfo={
-            TelCoId:telcoId,
-            SeqNo:getSeqNo()
-        }
-        UpdateAddProd(addProdInfo)
-    },[getSeqNo,telcoId])
 
     return(
         <div className="content">
@@ -140,7 +203,8 @@ const mapStateToProps = state =>
     return{
         currentTelco:state.telecom.currentTelco,
         telcoProds:state.telecom.telcoProds,
-        productsUpdated:state.telecom.productsUpdated
+        productsUpdated:state.telecom.productsUpdated,
+        productDelStatus:state.telecom.productDelStatus
     }
 }
 
@@ -151,7 +215,8 @@ const mapDispatchToProps = dispatch =>
         UpdateAddProd:(addProdInfo)=>dispatch(UpdateAddProd(addProdInfo)),
         ProductCreated:()=>dispatch(ProductCreated()),
         updateTelecomProdStart:(data)=>dispatch(updateTelecomProdStart(data)),
-        productsUpdatedStatus:()=>dispatch(productsUpdatedStatus())
+        productsUpdatedStatus:(status)=>dispatch(productsUpdatedStatus(status)),
+        deleteTelcoProductStatus:(status)=>dispatch(deleteTelcoProductStatus(status))
     }
 }
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ManageProducts))

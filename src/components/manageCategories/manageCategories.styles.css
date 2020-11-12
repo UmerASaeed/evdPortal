@@ -17,6 +17,17 @@
     align-items: center;
 }
 
+.manageCat-seq
+{
+    display: flex;
+    align-items: center;
+}
+
+.manageCat-seqNo
+{
+    margin-left: 10px;
+}
+
 .displayCat
 {
     width: 154px;

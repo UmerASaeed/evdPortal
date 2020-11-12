@@ -9,12 +9,14 @@ import StaffReducer from "./staff/staff-reducer"
 import popUpReducer from "./popUp/popUp-reducer"
 import TelecomReducer from "./telecom/telecom-reducer"
 import VoucherReducer from "./vouchers/vouchers-reducers"
+import PricesReducer from "./prices/prices-reducer"
+import RestrictionReducer from "./restrictions/restrictions.reducer"
 
 const persistConfig =
 {
     key:'root',
     storage,
-    whitelist:['section','telecom','login']
+    whitelist:['section','telecom','login','vouchers','prices']
 }
 
 const rootReducer = combineReducers({
@@ -24,7 +26,9 @@ const rootReducer = combineReducers({
     popUp:popUpReducer,
     telecom:TelecomReducer,
     vouchers:VoucherReducer,
-    login:LoginReducer
+    login:LoginReducer,
+    prices:PricesReducer,
+    restrictions:RestrictionReducer
 });
 
 export default persistReducer(persistConfig,rootReducer);

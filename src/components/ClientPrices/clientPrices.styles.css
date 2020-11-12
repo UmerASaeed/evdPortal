@@ -1,0 +1,60 @@
+.cP-headers,.cp-content,.cp-content-greyed
+{
+    display: flex;
+    margin: 25px;
+    align-items: center;
+}
+
+.cP-clientName
+{
+    color: #5495FD;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: "HelveticaNeueCyr-Medium";
+    margin: 0px 50px;
+    width: fit-content;
+    margin-bottom: 30px;
+}
+
+.clientPrices
+{
+    margin: 0px 40px;
+    height: auto;
+    max-height:220px;
+    overflow: scroll;
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+
+.hideContent
+{
+    display: none;
+}
+
+.cP-headers
+{
+    font-family: "HelveticaNeueCyr-Bold";
+}
+
+.cp-content-greyed
+{
+    color: #C9C9C9;
+}
+
+.cp-Sell,.cp-Brand,.cp-Category,.cp-Product,.cp-SellingPrice,.cp-Sell-val,.cp-Brand-val,.cp-category-val,.cp-product-val
+{
+    width: 180px
+}
+
+.cp-sellingPrice-val,.cp-sellingPrice-valGreyed
+{
+    width: 100px;
+    height: 30px;
+}
+
+.cp-sellingPrice-valGreyed
+{
+    border: 1px solid #EAEAEA;
+    background-color: #C9C9C9;
+}
+

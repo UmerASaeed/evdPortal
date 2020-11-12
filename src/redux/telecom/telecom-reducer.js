@@ -24,7 +24,9 @@ const INITIAL_STATE = {
     addingCategoryError:"",
     deletingCategory:false,
     deletingCategoryError:"",
-    productsUpdated:false
+    productsUpdated:false,
+    productDelStatus:false,
+    productsUpdateStatus:false
 }
 
 const TelecomReducer = (state = INITIAL_STATE,action) =>
@@ -194,13 +196,18 @@ const TelecomReducer = (state = INITIAL_STATE,action) =>
         case TelecomActionTypes.PRODUCTS_UPDATE_STATUS:
         return{
             ...state,
-            productsUpdated:false 
+            productsUpdated:action.payload
         }
         case TelecomActionTypes.UPDATE_TELECOM_LOCALLY:
         return{
             ...state,
             telcoList:action.payload       
         }
+        case TelecomActionTypes.DELETE_TELCO_PROD_STATUS:
+            return{
+                ...state,
+                productDelStatus:action.payload      
+            }
         default:
             return state
     }
