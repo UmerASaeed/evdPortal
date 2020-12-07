@@ -13,7 +13,9 @@ const INITIAL_STATE =
 
         }
     },
-    createStaff:false
+    createStaff:false,
+    staffCreated:false,
+    staffUpdated:false
 }
 
 const StaffReducer = ( state = INITIAL_STATE,action) =>
@@ -30,7 +32,9 @@ const StaffReducer = ( state = INITIAL_STATE,action) =>
             ...state,
             StaffData:action.payload,
             isfetching:false,
-            errorMessage:""
+            errorMessage:"",
+            staffCreated:false,
+            staffUpdated:false
         }
         case StaffActionTypes.FETCH_STAFF_FAILED_ASYNC:
         return{
@@ -48,7 +52,17 @@ const StaffReducer = ( state = INITIAL_STATE,action) =>
         return{
             ...state,
             createStaff:true
-        }      
+        }    
+        case StaffActionTypes.STAFF_CREATED:
+        return{
+            ...state,
+            staffCreated:action.payload
+        } 
+        case StaffActionTypes.STAFF_UPDATED:
+        return{
+            ...state,
+            staffUpdated:action.payload
+        }  
         default:
             return state  
     }

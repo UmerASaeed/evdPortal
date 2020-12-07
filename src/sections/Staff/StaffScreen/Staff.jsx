@@ -55,7 +55,7 @@ const Staff = ({fetchStaff,staff,isFetching}) =>
                 <Spinner/>
                 :staffs ? FilteredStaffs.map((staff,index)=>
                 {
-                    return <StaffObj key={index} fullName={staff.fullName} userName={staff.userName} createdAt={staff.createdAt} permissions={staff.permissions}/> 
+                    return <StaffObj key={index} id={staff.userId} fullName={staff.fullName} userName={staff.userName} createdAt={staff.createdAt} permissions={staff.permissions}/> 
                 }):null
             }
             </SubSection>

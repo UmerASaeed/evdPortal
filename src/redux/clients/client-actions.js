@@ -61,3 +61,50 @@ export const UpdateFailed = (errorMessage) =>
         payload:errorMessage
     }
 }
+
+export const getPerms = () =>
+{
+    return{
+        type:ClientActionTypes.GET_PERMS
+    }
+}
+
+export const getPermsSuccess = (perms) =>
+{
+    return{
+        type:ClientActionTypes.GET_PERMS_SUCCESS,
+        payload:perms
+    }
+}
+
+export const createClient = (client) =>
+{
+    return{
+        type:ClientActionTypes.CREATE_CLIENT,
+        payload:client
+    }
+}
+
+export const createClientStatus = (status) =>
+{
+    return{
+        type:ClientActionTypes.CREATE_CLIENT_STATUS,
+        payload:status
+    }
+} 
+
+export const updateUser = (user) =>
+{
+    return{
+        type:ClientActionTypes.EDIT_USER,
+        payload:user
+    }
+}
+
+export const clientUpdateStatus = (status) =>
+{
+    return{
+        type:ClientActionTypes.EDIT_CLIENT_STATUS,
+        payload:status
+    }
+}

@@ -28,7 +28,7 @@
 }
 
 
-.titles,.manageProd-titles,.voucherstTitle,.vbTitles,.ResTitle
+.titles,.manageProd-titles,.voucherstTitle,.vbTitles,.ResTitle,.salesTitles
 {
     display: flex;
     font-family: "HelveticaNeueCyr-Bold";
@@ -53,6 +53,11 @@
 .ResTitle
 {
     width:  2000px;
+}
+
+.salesTitles
+{
+    width: 2500px;
 }
 
 .dynamic-title

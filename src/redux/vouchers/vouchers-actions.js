@@ -1,4 +1,3 @@
-import { VouchersList } from "../../assets/titles"
 import VoucherActionTypes from "./vouchers-types"
 
 export const FetchBatchStart = () =>
@@ -169,5 +168,21 @@ export const CancelBatch = (batchId) =>
     return{
         type:VoucherActionTypes.CANCEL_BATCH,
         payload:batchId
+    }
+}
+
+export const editBatch = (batch) =>
+{
+    return{
+        type:VoucherActionTypes.EDIT_BATCH,
+        payload:batch
+    }
+}
+
+export const editBatchStatus = (status) =>
+{
+    return{
+        type:VoucherActionTypes.EDIT_BATCH_STATUS,
+        payload:status
     }
 }

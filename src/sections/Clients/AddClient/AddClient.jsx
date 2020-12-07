@@ -1,11 +1,33 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import { Redirect, useHistory } from "react-router-dom"
 import CheckBox from "../../../components/checkBox/checkBox.component"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import CustomButton from "../../../components/customButton/customButton.component"
+import {getPerms,createClient} from "../../../redux/clients/client-actions"
 import "./AddClient.styles.css"
 
-const AddClient = () =>
+const AddClient = ({perms,getPerms,CreateClient,clientCreated}) =>
 {
-    const [clientInfo,setClientInfo] = useState({Fullname:"",UserName:"",password:"",email:"",isCustomer:false,VATNumber:"",Permissions:[]})
+    const [clientInfo,setClientInfo] = useState({Fullname:"",UserName:"",password:"",email:"",VATNumber:""})
+    const [permIds,setPermIds] = useState({})
+    const history = useHistory()
+    const permChecked = (id) =>
+    {
+        if (permIds[id])
+        {
+            setPermIds({...permIds,[id]:false})
+        }
+        else
+        {
+            setPermIds({...permIds,[id]:true})
+        }
+    }
+
+    useEffect(()=>
+    {
+        getPerms()
+    },[getPerms])
 
     const handleChange = (e) =>
     {
@@ -13,16 +35,52 @@ const AddClient = () =>
         setClientInfo({...clientInfo,[name]:value})
     }
 
+    const createClient = () =>
+    {
+        if (clientInfo.Fullname === "" || clientInfo.UserName === "" || clientInfo.password ==="" || clientInfo.email === "" )
+        {
+            console.log("Please Add All fields")
+        } 
+        else
+        {
+            let permArray = []
+            Object.entries(permIds).forEach(perm=>
+            {
+                if(perm[1])
+                {
+                    permArray.push(parseInt(perm[0]))
+                }
+            })
+            let client = {
+                Fullname:clientInfo.Fullname,
+                UserName:clientInfo.UserName,
+                password:clientInfo.password,
+                email:clientInfo.email,
+                VATNumber:clientInfo.VATNumber,
+                isCustomer:true,
+                Permissions:permArray
+
+            }
+            CreateClient(client)
+        }
+    }
+
     return(
         <div className='addClientPage'>
-            <h2 className="subText">Clients/Add New Client</h2>
-            <div className="client-container">
-                <div className="sub-left">
+            {clientCreated ? <Redirect to="/Clients"/> : null}
+            <div className="subText addClient-subText">
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+                Clients/Add New Client
+            </div>
+            <div className="client-container addclient-container">
+                <div className="sub-left addClient-subLeft">
                     <div className="info">
-                        <h2 className="info-text">Information</h2>
+                        <h2 className="info-text"  style={{marginLeft:"9%"}}>Information</h2>
                             <div className="info-client">
                                 <p className="info-client-name">Client Name</p>
-                                <input type="text" name="FullName" placeholder=" Client Name" className="clientName" onChange={handleChange}/>
+                                <input type="text" name="Fullname" placeholder=" Client Name" className="clientName" onChange={handleChange}/>
                             </div>
                             <div className="vat-client">
                                 <p className="vat-num">VAT #</p>
@@ -41,41 +99,49 @@ const AddClient = () =>
                                 <input type="password" name="password" placeholder=" ******" className="client-pass-inp" onChange={handleChange} />
                             </div>
                     </div>
-                    <br/><br/>
-                    <h2 className="permission-text">Permissions</h2>
-                    <br/>
+                    <h2 className="permission-text"  style={{marginLeft:"9%"}}>Permissions</h2>
                     <div className="permission">
-                        <div className="first-two-client">
-                            <div className="purchaseProd" >
-                                <CheckBox/>
-                                <p className="checkOptionpP">Purchase Products</p>
-                            </div>
-                            <br/>
-                            <div className="downloadFiles" >
-                                <CheckBox/>
-                                <p className="checkOptionDF">Download Files</p>
-                            </div>
-                        </div>  
-                        <br/> 
-                        <div className="second-two-client">
-                            <div className="paymentReport" >
-                                    <CheckBox/>
-                                    <p className="checkOptionPR">View Payments Report</p>
-                            </div>
-                            <br/>
-                            <div className="WalletReport" >
-                                <CheckBox/>
-                                <p className="checkOptionWR">View Wallet Report</p>
-                            </div>
-                        </div>  
+                    {
+                       perms ? perms.map((perm,index)=>
+                       {
+                           if(perm.forCustomer)
+                           {
+                            return  <div className="perm-row" key={index}>                  
+                                        <div className="perm">
+                                            <div onClick={()=>permChecked(perm.id)}> <CheckBox/></div>
+                                            <p className="checkOption">{perm.name}</p>
+                                        </div>
+                                    </div>        
+                           }
+                       }) : null
+                    }
+                    
                     </div>
-                    </div>
-                    <div className="createClientBtn">
-                        <CustomButton btnText="Create New Client"/>
-                    </div>
+                </div>
+            </div>
+            <div className="createClientBtn" onClick={createClient}>
+                <CustomButton btnText="Create New Client"/>
             </div>
         </div>
     )
 }
 
-export default AddClient;
+const mapDispatchToProps = (dispatch) =>
+{
+    return{
+        getPerms:()=>dispatch(getPerms()),
+        CreateClient:(client)=>dispatch(createClient(client))
+    }
+}
+
+const mapStateToProps = state =>
+{
+    return{
+        perms:state.clients.perms,
+        clientCreated:state.clients.clientCreated
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddClient);
+
+

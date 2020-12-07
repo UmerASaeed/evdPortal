@@ -11,12 +11,16 @@ import TelecomReducer from "./telecom/telecom-reducer"
 import VoucherReducer from "./vouchers/vouchers-reducers"
 import PricesReducer from "./prices/prices-reducer"
 import RestrictionReducer from "./restrictions/restrictions.reducer"
+import SalesReducer from "./sales/sales.reducer"
+import VendorReducer from "./vendors/vendor.reducer"
+import SearchReducer from "./search/search.reducer"
+import ReportsReducer from "./reports/reports.reducer"
 
 const persistConfig =
 {
     key:'root',
     storage,
-    whitelist:['section','telecom','login','vouchers','prices']
+    whitelist:['section','telecom','login','vouchers','prices','sales','vendors']
 }
 
 const rootReducer = combineReducers({
@@ -28,7 +32,11 @@ const rootReducer = combineReducers({
     vouchers:VoucherReducer,
     login:LoginReducer,
     prices:PricesReducer,
-    restrictions:RestrictionReducer
+    restrictions:RestrictionReducer,
+    sales:SalesReducer,
+    vendors:VendorReducer,
+    search:SearchReducer,
+    reports:ReportsReducer
 });
 
 export default persistReducer(persistConfig,rootReducer);

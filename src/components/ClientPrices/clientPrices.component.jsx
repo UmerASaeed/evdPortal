@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import ClientPricesContent from "../clientPricesContent/clientPricesContent.component"
+import DwnBtn from "../../assets/dwnBtn.png"
+import sideBtn from "../../assets/sideBtn.png"
 import "./clientPrices.styles.css"
 
 
@@ -15,7 +17,12 @@ const ClientPrices = ({fullName,offers,hideAll,customerId}) =>
 
     return(
         <div className={hideAll ? "hideContent" : ""}>
-         <div className="cP-clientName" onClick={hideStuff}>{fullName}</div>
+         <div className="cP-clientName" onClick={hideStuff} style={{display:"flex"}}>
+         {!hide ? <img src={DwnBtn}/> : <img src={sideBtn}/>}
+         <div style={{marginLeft:"10px"}}>
+            {fullName}
+         </div>
+         </div>
             <div className={hide ? "hideContent" :"clientPrices"}>
                 <div className="cP-headers">
                     <div className="cp-Sell">Sell?</div>

@@ -5,4 +5,6 @@ export const ManageProds = ["Sequence","Category","Name(en)","Name (ar)","MRP","
 export const AddProds = ["Category","Name(en)","Name (ar)","MRP","SN Length" ,"VN Length" ,"Recharge (EN)","Recharge (AR)" ,"Reorder Point","Default Selling Price"]
 export const VouchersList = ["Time","Brand","Category","Product","Quantity","Used","Batch Name","Vendor","Cost","Total Cost","Expiry Date","File Name" ,"Active","Batch","Details","Cancel"]
 export const ViewBatchList= ["Delete?" ,"Sequence" ,"SN","VN","Status","Client","Reference #" , "Used Time"]
-export const RestrictionsTitles = ["Reason","Affected Products","Affected Clients","Start Time","End Time","Created On","Status","Edit","Cancel"]
+export const RestrictionsTitles = ["Reason","Affected Products","Affected Clients","Start Time","End Time","Status","Edit","Cancel"]
+export const SalesTitles = ["Client","Time","Reference #","Vouchers","Status","Requested by","Requested user","File Download","Cancel"]
+export const VendorTitles = ["Name","Created Date","Description","Edit Vendor"]

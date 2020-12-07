@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react"
 import {AddProds} from "../../../assets/titles"
 import CustomButton from "../../../components/customButton/customButton.component"
 import {AddProductStart,FetchCategoriesStart} from "../../../redux/telecom/telecom-actions"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import "./addProduct.styles.css"
 import { connect } from "react-redux"
-import { Route ,Redirect} from "react-router-dom"
+import { Route ,Redirect, useHistory} from "react-router-dom"
 
 const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,FetchCategoriesStart}) =>
 {
     const [newProd,setNewProd] = useState({categoryId:`${categoryList ? categoryList[0].categoryId : null}`,NameEn:"",NameAr:"",Mrp:0,SerialNoLength:0,VoucherNoLength:0,RechargeInstructionsEn:"",RechargeInstructionsAr:"",reorderPoint:"",DefaultSellingPrice:""})
+    const history = useHistory()
 
     useEffect(()=>
     {
@@ -49,8 +51,11 @@ const AddProduct = ({addProdInfo,AddProductStart,productAdded,categoryList,Fetch
     return(
         <div className="content">
             <Route path="/Telecom/ManageProducts/addProduct" render = {()=> productAdded ? <Redirect to="/Telecom/ManageProducts"/> : null}/>
-            <div className="subHeader">
-                <h2 className="subText"> Add New Product </h2>
+            <div className="subText addClient-subText" style={{marginRight:"95px"}}>
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+                Add New Product
             </div>
             <div className="addProd-content">
                 <div className="outer-manageProds-category1">    

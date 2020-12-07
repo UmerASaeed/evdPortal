@@ -5,6 +5,7 @@ import {ManageProds} from "../../../assets/titles"
 import SubSection from "../../../components/subSection/subSection.component"
 import CustomButton from "../../../components/customButton/customButton.component"
 import ManageProdsComp from "../../../components/manageProducts/manageProducts.component"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import Spinner from "../../../components/spinner/spinner.component"
 import {fetchTelecoProdsStart,UpdateAddProd,ProductCreated,updateTelecomProdStart,productsUpdatedStatus,deleteTelcoProductStatus} from "../../../redux/telecom/telecom-actions"
 import "./ManageProducts.styles.css"
@@ -176,11 +177,16 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
         history.push(`${match.path}/addProduct`)
     }
 
-
+    console.log(telcoProds)
     return(
         <div className="content">
             <div className="subHeader-telecom-manageProds">
-                <h2 className="subText-telecom-manageProds">Telecom/Manage Products: {`${enName}`} </h2>
+                <div className="subText addClient-subText">
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+                Telecom/Manage Products: {`${enName}`}
+            </div>
                 <div className="options-telecom-manageProds" onClick={addProduct}>
                     <CustomButton btnText="Add new Product" />
                 </div>
@@ -189,7 +195,7 @@ const ManageProducts = ({currentTelco:{enName,telcoId},getProds,telcoProds,match
             {
                 telcoProds ? telcoProds.map((prod,index)=>
                 {   return  <div key={prod.seqNo} onDragStart={(e)=>{dragStartHandle(e,prod.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,prod.seqNo)}} onDragEnd={handleDragEnd}>
-                                <ManageProdsComp key={index} telcoId={telcoId} productId={prod.productId} seqNo={prod.seqNo} categoryName={prod.categoryName} nameEn={prod.nameEn} nameAr={prod.nameAr} mrp={prod.mrp} serialNoLength={prod.serialNoLength} voucherNoLength={prod.voucherNoLength} rechargeInstructionsEn={prod.rechargeInstructionsEn} rechargeInstructionsAr={prod.rechargeInstructionsAr} reorderPoint={prod.reorderPoint} active={prod.active} defaultSellingPrice={prod.defaultSellingPrice}/>                
+                                <ManageProdsComp key={index} categoryId={prod.categoryId} telcoId={telcoId} productId={prod.productId} seqNo={prod.seqNo} categoryName={prod.categoryName} nameEn={prod.nameEn} nameAr={prod.nameAr} mrp={prod.mrp} serialNoLength={prod.serialNoLength} voucherNoLength={prod.voucherNoLength} rechargeInstructionsEn={prod.rechargeInstructionsEn} rechargeInstructionsAr={prod.rechargeInstructionsAr} reorderPoint={prod.reorderPoint} active={prod.active} defaultSellingPrice={prod.defaultSellingPrice}/>                
                             </div>
                 }) : <Spinner/>
             }

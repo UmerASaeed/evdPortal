@@ -1,13 +1,15 @@
 import React, { useEffect, useState,useRef} from "react"
-import {Route,Redirect} from 'react-router-dom'
+import {Route,Redirect, useHistory} from 'react-router-dom'
 import SubSection from "../../../components/subSection/subSection.component"
 import CustomButton from "../../../components/customButton/customButton.component"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import {CreateTelco,UploadLogo} from "../../../redux/telecom/telecom-actions"
 import "./Addtelecom.styles.css"
 import { connect } from "react-redux"
 
 const Addtelecom = ({telcos,createTelcoAction,telcoCreated,UploadLogo,logoUploaded}) =>
 {
+    const history = useHistory()
     const [imgSrc,setImgSrc] = useState("")
     const [telcoNames,setTelcoNames] = useState({name:"",nameAra:"",seqNo:0})
     const isFirstRender = useRef(true)
@@ -64,8 +66,11 @@ const Addtelecom = ({telcos,createTelcoAction,telcoCreated,UploadLogo,logoUpload
     return(
         <div className="telecom-content">
             <Route exact path="/Telecom/addTelecom" render={()=>logoUploaded ? <Redirect to = {`/Telecom`}/> : null } />
-            <div className='add-telco-title'>
-                <h2>Telecom / Add New Telecom</h2>
+            <div className="subText addClient-subText add-telco-title">
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+               Add New Telecom
             </div>
             <SubSection quarter={true}>
             {

@@ -9,6 +9,7 @@ const ClientPopUp = ({clientName,purpose,id,updateStart,updateWalletStart,update
     const [clientId,setClientId] = useState(0)
     const [amount,setAmount] = useState(0)
     const [description,setDescription] = useState("")
+    const [paymentMode,setPaymentMode] = useState("")
 
     const onAmountChange = (event)=>
     {
@@ -36,12 +37,21 @@ const ClientPopUp = ({clientName,purpose,id,updateStart,updateWalletStart,update
         updateWalletStart(clientDetail)
     }
 
+    const setMode = (e) =>
+    {
+        if(e.target.value !== 0)
+        {
+            setPaymentMode(e.target.value)
+        }
+    }
+
     const Updatepayment = () =>
     {
         let clientDetail = {
             id:clientId,
             amount,
-            description
+            description,
+            paymentMode:paymentMode
         }
         updateStart()
         updatePaymentStart(clientDetail)
@@ -60,7 +70,10 @@ const ClientPopUp = ({clientName,purpose,id,updateStart,updateWalletStart,update
                     purpose === "payment" ? 
                     <div className="wallet-fieldMid">
                         <p>Payment Mode</p>
-                        <input className="enter-mode" type="text" value="Bank" readOnly/>
+                        <select className="enter-mode" onChange={setMode}> 
+                            <option value={0}>Select Mode</option>
+                            <option value="Bank">Bank</option>
+                        </select>
                     </div>
                     : null
                 }

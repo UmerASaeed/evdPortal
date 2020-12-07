@@ -128,8 +128,8 @@ const Telecom = ({fetchTelecom,telcoList,ToggleLogoUploaded,deleteSuccessful,Tog
                     
                     telcoList ? FilteredTelcos.map((telco,index)=>
                     {
-                        return <div key={telco.seqNo} onDragStart={(e)=>{dragStartHandle(e,telco.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,telco.seqNo)}} onDragEnd={handleDragEnd} >
-                                    <Telco key={index} seq={telco.seqNo} enName={telco.name} arName={telco.nameAra} imgSrc={"http://localhost/StaffApp/logos/" + `${telco.logoName}`} telcoId={telco.telCoId}/>
+                        return <div key={telco.telCoId} onDragStart={(e)=>{dragStartHandle(e,telco.seqNo)}}  onDragEnter={(e)=>{dragEnterHandle(e,telco.seqNo)}} onDragEnd={handleDragEnd} >
+                                    <Telco key={telco.telCoId} seq={telco.seqNo} enName={telco.name} arName={telco.nameAra} imgSrc={"http://localhost/StaffApp/logos/" + `${telco.logoName}`} telcoId={telco.telCoId}/>
                                 </div>
                     }) : null
                 }

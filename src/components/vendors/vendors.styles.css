@@ -1,0 +1,12 @@
+.vendorsList
+{
+    display: flex;
+    margin: 30px 0px;
+}
+
+.vendorName,.vendor-date,.vendor-description,.vendor-editBtn
+{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}

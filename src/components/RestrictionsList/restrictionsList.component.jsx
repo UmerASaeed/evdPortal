@@ -20,9 +20,8 @@ const RestrictionsList = ({restr,CancelRestriction}) =>
             <div className="resAffecProd widthAdj">{restr.productName}</div>
             <div className="resAffecClients widthAdj">{restr.customerName}</div>
             <div className="resStartTime widthAdj">{restr.startDate}</div>
-            <div className="resEndTime widthAdj">{restr.endDate}</div>
-            <div className="resCreatedOn widthAdj">filler</div>
-            <div className="resStatus widthAdj">filler</div>
+            <div className="resEndTime widthAdj">{restr.endDate}</div>   
+            <div className="resStatus widthAdj">{restr.status}</div>
             <div className="resEdit widthAdj">
                 <CustomButton btnText="Edit"/>
             </div>

@@ -2,7 +2,8 @@ import loginType from "./login.types"
 
 const INITIAL_STATE ={
     loginSuccess:false,
-    token:null
+    token:null,
+    sessionEnded:false
 }
 
 const LoginReducer = (state = INITIAL_STATE,action) =>
@@ -12,7 +13,8 @@ const LoginReducer = (state = INITIAL_STATE,action) =>
         return{
             ...state,
             loginSuccess:true,
-            token:action.payload
+            token:action.payload,
+            sessionEnded:false
         } 
         case loginType.LOGIN_TIMED_OUT:
         case loginType.LOG_OUT:
@@ -21,6 +23,11 @@ const LoginReducer = (state = INITIAL_STATE,action) =>
             loginSuccess:false,
             token:null
         }    
+        case loginType.SESSION_ENDED:
+            return{
+                ...state,
+                sessionEnded:true
+            }
         default:
             return state
         

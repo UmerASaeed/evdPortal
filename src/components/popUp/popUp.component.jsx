@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 import {closePopUp} from "../../redux/popUp/popUp-actions"
 import {setEditBatch} from "../../redux/vouchers/vouchers-actions"
@@ -6,10 +6,20 @@ import ManageCat from "../manageCategories/manageCategories.component"
 import EditBatch from "../editBatchDetails/editBatch.component"
 import ClientPopUp from "../client-popUp/clientPopUp.component"
 import "./popUp.styles.css"
+import { useHistory } from 'react-router-dom'
 
-const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType,setEditBatch}) =>
+const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType,setEditBatch,editBatchStatus}) =>
 {
-   
+    
+    const btnRef = useRef()
+    const history = useHistory()
+
+    if(editBatchStatus)
+    {
+        btnRef.current.click()
+        history.go()
+    }
+
     return(
         <div className = "popUp">
         {   closeVal ? null :
@@ -18,11 +28,11 @@ const PopUp = ({header,clientName,purpose,id,ClosePopUp,closeVal,popUpType,setEd
                     <p className="header-name">{header}</p>
                     {
                         popUpType === "manageCategories" ? null :  
-                        <button className='cross-btn' onClick={()=>
+                        <button className='cross-btn' ref={btnRef} onClick={()=>
                         {  
                             if (popUpType === 'editBatch')
                             {
-                                setEditBatch(false)
+                                setEditBatch({data:{},status:false})
                             }
                             else
                             {
@@ -51,4 +61,11 @@ const mapDispatchToProps = dispatch =>
     }
 }
 
-export default connect(null,mapDispatchToProps)(PopUp);
+const mapStateToProps = state =>
+{
+    return{
+        editBatchStatus:state.vouchers.editBatchStatus
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PopUp);

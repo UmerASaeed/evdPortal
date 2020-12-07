@@ -1,7 +1,7 @@
 import {takeLatest,put,call,all} from "redux-saga/effects"
 import VoucherActionTypes from "./vouchers-types"
-import {FetchBatchSuccess,FetchBatchFailed,prodIdSuccess,uploadVoucherErrors,fetchVouchersSuccessful,fetchVouchersFailed,deleteVoucherSuccess,deleteVoucherFailed,ConfirmUploadStatus} from "./vouchers-actions"
-import {getBatchList,ScanVoucherFile,getProductId,fetchVouchers,deleteVouchers,CUpload,updateBatchActivation,cancelBatch} from "../../utils/fetching"
+import {FetchBatchSuccess,FetchBatchFailed,prodIdSuccess,uploadVoucherErrors,fetchVouchersSuccessful,fetchVouchersFailed,deleteVoucherSuccess,deleteVoucherFailed,ConfirmUploadStatus,editBatchStatus} from "./vouchers-actions"
+import {getBatchList,ScanVoucherFile,getProductId,fetchVouchers,deleteVouchers,CUpload,updateBatchActivation,cancelBatch,editBatch} from "../../utils/fetching"
 
 export function* fetchBatchStartAsync()
 {
@@ -105,6 +105,24 @@ export function* CancelBatchStart(data)
     }
 }
 
+export function* editBatchAsync(data)
+{
+    try {
+        const resp = yield editBatch(data.payload)
+        if (resp.statusText==='OK')
+        {
+            yield put(editBatchStatus(true))
+        }
+        else
+        {
+            yield put(editBatchStatus(true))
+        }
+    } catch (error) {
+        yield put(editBatchStatus(false))
+    }
+}
+
+
 export function* fetchBatch()
 {
     yield takeLatest(VoucherActionTypes.FETCH_BATCHLIST_START,fetchBatchStartAsync)
@@ -146,7 +164,12 @@ export function* CancelBatch()
     yield takeLatest(VoucherActionTypes.CANCEL_BATCH,CancelBatchStart)
 }
 
+export function* editBatchStart()
+{
+    yield takeLatest(VoucherActionTypes.EDIT_BATCH,editBatchAsync)
+}
+
 export function* VoucherSagas()
 {
-    yield all([call(fetchBatch),call(uploadVocuhers),call(getProdId),call(getVouchers),call(deleteVoucher),call(confirmUpload),call(UpdateBatchActiv),call(CancelBatch)])
+    yield all([call(fetchBatch),call(uploadVocuhers),call(getProdId),call(getVouchers),call(deleteVoucher),call(confirmUpload),call(UpdateBatchActiv),call(CancelBatch),call(editBatchStart)])
 }

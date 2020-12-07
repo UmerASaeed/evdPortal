@@ -1,17 +1,26 @@
 import React,{useEffect, useState} from "react"
 import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import CustomButton from "../../../components/customButton/customButton.component"
 import {uploadVoucherStart,getProductId,ConfirmUpload,ClearVoucherErrors,ClearProdIdError} from "../../../redux/vouchers/vouchers-actions"
+import SearchDD from "../../../components/SearchDrpDwn/SearchDD.component"
+import {GetVendors} from "../../../redux/vendors/vendors.actions"
 import "./upload-vouchers.styles.css"
 
-const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVoucherErrors,ConfirmUpload,voucherUploaded,ClearVoucherErrors,ClearProdIdError}) =>
+const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVoucherErrors,ConfirmUpload,voucherUploaded,ClearVoucherErrors,ClearProdIdError,GetVendors,vendors}) =>
 {
     const [fileDetails,setFileDetails] = useState({telecom:"",product:"",expiryDate:null,batchName:"",vendor:"",cost:null,BatchNumber:null,issueDate:null,itemPrice:null})
     const [uploadedFile,setUploadFile] = useState(null);
     const [clicked,setClicked] = useState(true)
     const [fileDropped,setFileDropped] = useState(false)
     const [inputAllVal,setInputAllVal] = useState(false)
+    const history = useHistory()
+
+    useEffect(()=>
+    {
+        GetVendors()
+    },[])
 
     const onValchange = (e) =>
     {
@@ -40,6 +49,7 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
         {
             let bodyFormData = new FormData()
             bodyFormData.append('file',uploadedFile)
+            bodyFormData.append("SupplierID",fileDetails.vendor)
             bodyFormData.append("ProductID",productId)
             ClearProdIdError()
             uploadVoucherStart(bodyFormData)
@@ -89,10 +99,26 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
         }   
     }
 
+    const SelectedOption = (option) =>
+    {
+        if(option.value === null)
+        {
+            setFileDetails({...fileDetails,vendor:null})
+        }
+        else
+        {
+            setFileDetails({...fileDetails,vendor:parseInt(option.value)})
+        }
+    }
+
+
     return(
         <div className='content'>
-                <div className="subHeader">
-                        <h2 className="subText">Vouchers/Upload Batch</h2>
+                <div className="subText addClient-subText">
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+                Vouchers/Upload Batch
                 </div>
                 <div className="client-container">
                 <div className="sub-left"> 
@@ -124,20 +150,15 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
                                 <div className="uv-header">Issue Date</div>
                                 <input type="date"  name="issueDate" className={inputAllVal ? "uv-option1" : "uv-option"} onChange={onValchange}/>
                             </div>
-                            <br/>  
-                            <div className="uv-options">
-                                <div className="uv-header">Batch Name</div>
-                                <input type="text" placeholder="Batch Name" name="batchName" className="uv-option" onChange={onValchange}/>
-                            </div>
                             <br/>
                             <div className="uv-options">
-                                <div className="uv-header">Batch Number</div>
+                                <div className="uv-header">Batch Name</div>
                                 <input type="text" placeholder="Batch Number" name="BatchNumber" className={inputAllVal ? "uv-option1" : "uv-option"} onChange={onValchange}/>
                             </div>
                             <br/>  
                             <div className="uv-options">
                                 <div className="uv-header">Vendor</div>
-                                <input type="text" placeholder="Vendor" name="vendor" className="uv-option" onChange={onValchange}/>
+                                <SearchDD placeholder="Vendor" SelectedOption={SelectedOption}  type="vendor" data={vendors ? vendors : []}/>
                             </div>
                             <br/>  
                             <div className="uv-options">
@@ -175,7 +196,6 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
                                         </div>
                                         <div className="warning-withinFiles-filesInfo">
                                             <div className="warning1-headers">
-                                                <div className="warning1-header">Line</div>
                                                 <div className="warning1-header">SN</div>
                                                 <div className="warning1-header" >VN</div>
                                             </div>
@@ -183,7 +203,6 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
                                                 uploadingVoucherErrors.files.map((file,index)=>
                                                 {
                                                     return <div className="warning1-files" key={index}>
-                                                                <div className="w1-fileLine">{}</div>
                                                                 <div className="w1-fileSN">{file.serialNo}</div>
                                                                 <div className="w1-fileVN" style={{color:"#FF4D4D"}}>{file.pin}</div>
                                                         </div>
@@ -204,7 +223,6 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
                                     </div>
                                     <div className="warning-filesInfo">
                                         <div className="warning2-headers">
-                                            <div className="warning2-header">Line</div>
                                             <div className="warning2-header">SN</div>
                                             <div className="warning2-header">VN</div>
                                             <div className="warning2-header">Brand</div>
@@ -214,11 +232,10 @@ const UploadVouchers = ({uploadVoucherStart,getProductId,productId,uploadingVouc
                                         </div>
                                         {uploadingVoucherErrors.files.map((file,index)=> {
                                             return  <div className="warning2-files" key={index}>
-                                                        <div className="w2-fileLine w2-file-option">{}</div>
                                                         <div className="w2-fileSN w2-file-option">{file.serialNo}</div>
                                                         <div className="w2-fileVN w2-file-option">{file.pin}</div>
-                                                        <div className="w2-fileBrand w2-file-option"></div>
-                                                        <div className="w2-fileBrand w2-file-option"></div>
+                                                        <div className="w2-fileBrand w2-file-option">{fileDetails.telecom}</div>
+                                                        <div className="w2-fileBrand w2-file-option">{fileDetails.product}</div>
                                                         <div className="w2-fileBatchName w2-file-option">{file.duplicateBatchNo}</div>
                                                         <div className="w2-uploadDate w2-file-option">{file.duplicateFileCreatedAt}</div>
                                                     </div>
@@ -266,7 +283,8 @@ const mapStateToProps = state =>
     return{
         productId:state.vouchers.productId,
         uploadingVoucherErrors:state.vouchers.uploadingVoucherErrors,
-        voucherUploaded:state.vouchers.voucherUploaded
+        voucherUploaded:state.vouchers.voucherUploaded,
+        vendors:state.vendors.vendorsList
     }
 }
 
@@ -277,7 +295,8 @@ const mapDispatchToProps = dispatch =>
         getProductId:(data)=>dispatch(getProductId(data)),
         ConfirmUpload:(data)=>dispatch(ConfirmUpload(data)),
         ClearVoucherErrors:()=>dispatch(ClearVoucherErrors()),
-        ClearProdIdError:()=>dispatch(ClearProdIdError())
+        ClearProdIdError:()=>dispatch(ClearProdIdError()),
+        GetVendors:()=>dispatch(GetVendors())
     }
 }
 

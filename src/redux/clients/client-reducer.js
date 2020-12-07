@@ -6,7 +6,11 @@ const INITIAL_STATE =
     isfetching:false,
     errorMessage:undefined,
     isUpdating:false,
-    comments:""
+    comments:"",
+    updateSuccess:false,
+    perms:null,
+    clientCreated:false,
+    clientUpdated:false
 }
 
 const ClientReducer = ( state = INITIAL_STATE,action) =>
@@ -23,7 +27,11 @@ const ClientReducer = ( state = INITIAL_STATE,action) =>
             ...state,
             ClientData:action.payload,
             isfetching:false,
-            errorMessage:""
+            errorMessage:"",
+            updateSuccess:false,
+            perms:null,
+            clientCreated:false,
+            clientUpdated:false
         }
         case ClientActionTypes.FETCH_FAILED_ASYNC:
         return{
@@ -40,13 +48,29 @@ const ClientReducer = ( state = INITIAL_STATE,action) =>
             ...state,
             comments:action.payload,
             isUpdating:false,
-            errorMessage:""
+            errorMessage:"",
+            updateSuccess:true
         }
         case ClientActionTypes.UPDATE_FAILED_ASYNC:
         return{
             ...state,
             errorMessage:action.payload
-        }    
+        }  
+        case ClientActionTypes.GET_PERMS_SUCCESS:
+        return{
+            ...state,
+            perms:action.payload
+        }  
+        case ClientActionTypes.CREATE_CLIENT_STATUS:
+        return{
+            ...state,
+            clientCreated:action.payload
+        }
+        case ClientActionTypes.EDIT_CLIENT_STATUS:
+        return{
+            ...state,
+            clientUpdated:action.payload
+        }
         default:
             return state  
     }

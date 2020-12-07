@@ -1,0 +1,25 @@
+.sales-ListOrders
+{
+    display: flex;
+    width: 2500px;
+}
+
+.sales-width
+{
+    display: flex;
+    justify-content: center;
+    width: 277.78px;
+    margin: 20px 0px;
+}
+
+.sales-vouchers,.sales-refrenceNo
+{
+    color: #5495FD;
+    cursor: pointer;
+}
+
+.salesPopUpVal
+{
+    position: absolute;
+    top: 30%;
+}

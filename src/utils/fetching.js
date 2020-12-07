@@ -62,7 +62,7 @@ export const updateWallet = async (id,amount,desc) =>
         {
             headers: { Authorization: `Bearer ${store.getState().login.token}` }
         } 
-        axios.post("http://staff.evdportal.com/api/Customer/AddCredit",
+        axios.post("http://localhost/StaffApp/api/Customer/AddCredit",
         {
         "CustomerID":id,
         "Addition":amount,
@@ -75,18 +75,19 @@ export const updateWallet = async (id,amount,desc) =>
     }
 }
 
-export const updatePaymentBalance= async (id,amount,desc) =>
+export const updatePaymentBalance= async (id,amount,desc,mode) =>
 {
     try{
         const options1 =
         {
             headers: { Authorization: `Bearer ${store.getState().login.token}`}
         } 
-        axios.post("http://staff.evdportal.com/api/Customer/AddPayment",
+        axios.post("http://localhost/StaffApp/api/Customer/AddPayment",
         {
         "CustomerID":id,
         "Addition":amount,
-        "Comments":desc
+        "Comments":desc,
+        "paymentMode":mode
         },options1)
     }
     catch(error)
@@ -351,7 +352,6 @@ export const ScanVoucherFile = async (formData) =>
         const resp = await axios.post("http://localhost/StaffApp/api/voucher/uploadVouchers",formData,options1)
         if (resp.data.hasError)
         {
-            
             duplicateFiles.error = true;
             duplicateFiles.files = []
 
@@ -363,12 +363,17 @@ export const ScanVoucherFile = async (formData) =>
                 duplicateFiles.duplicateVoucherNo = resp.data.fileDuplicates
                 resp.data.vouchers.forEach(voucher=>
                 {
-                    if (resp.data.fileDuplicates.includes(voucher.pin))
+                    resp.data.fileDuplicates.forEach(duplicate=>
                     {
-                        duplicateFiles.files.push(voucher)
-                    }
-                })                
-              return duplicateFiles
+                        if(duplicate.voucherNo === voucher.pin)
+                        {
+                            duplicateFiles.files.push(voucher)
+                        }
+                    })
+                }) 
+                 console.clear()
+                 console.log(duplicateFiles)               
+                 return duplicateFiles
             }
             else
             {
@@ -506,5 +511,144 @@ export const createNewRestriction = async (data) =>
 export const cancelRestriction = async (id) =>
 {
     const resp = await FetchData("http://localhost/StaffApp/api/SaleRestriction/RemoveSaleRestriction",id)
+    return resp
+}
+
+export const getSalesList = async () =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/ListOrders",{})
+    return resp
+}
+
+export const getOrderDetails  = async (orderId) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/OrderDetails",orderId)
+    return resp
+}
+
+export const getSaleVouchers = async (orderId) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/OrderVouchers",orderId)
+    return resp
+}
+
+export const getNSProds = async (cId) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/ProductListForOrder",cId)
+    return resp
+}
+
+export const makeSale = async (sale) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/PlaceOrder",sale)
+    return resp
+}
+
+export const getFileLink = async (id) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/GetOrderFileLink",id)
+    return resp
+}
+
+export const delSale = async (id) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Order/CancelOrder",id)
+    return resp
+}
+
+export const fetchVendors = async () =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/supplier/list",{})
+    return resp
+}
+
+export const createSupplier = async (vendor) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/supplier/Create",vendor)
+    return resp
+}
+
+export const EditSupplier = async (vendor) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/supplier/update",vendor)
+    return resp
+}
+
+export const search = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/voucher/VoucherSearch",params)
+    return resp
+}
+
+export const fetchDownloadReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/SalesReport",params)
+    return resp
+}
+
+export const fetchWalletReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/WalletReport",params)
+    return resp
+}
+
+export const fetchPaymentReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/PaymentReport",params)
+    return resp
+}
+
+export const fetchPurchaseReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/PuchaseReport",params)
+    return resp
+}
+
+
+export const fetchInventoryUsageReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/InventoryUsageReport",params)
+    return resp
+}
+
+export const fetchInventoryReport = async (params) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Reports/InventoryReport",params)
+    return resp
+}
+
+export const fetchPerms = async () =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/User/PermissionsList",{})
+    return resp
+}
+
+export const makeClient = async (client) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/User/Create",client)
+    return resp
+}
+
+export const updateUser =  async (user) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/User/Update",user)
+    return resp
+}
+
+export const editBatch =  async (batch) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/voucher/EditBatch",batch)
+    return resp
+}
+
+export const telcoManualUpdate = async (telco) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/Telco/Update",telco)
+    return resp
+}
+
+export const prodManualUpdate = async (prod) =>
+{
+    const resp = await FetchData("http://localhost/StaffApp/api/product/Update",prod)
     return resp
 }

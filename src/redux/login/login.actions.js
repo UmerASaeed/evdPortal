@@ -21,3 +21,10 @@ export const LogOut = () =>
         type:loginType.LOG_OUT
     }
 }
+
+export const sessionEnded = () =>
+{
+    return{
+        type:loginType.SESSION_ENDED
+    }
+}

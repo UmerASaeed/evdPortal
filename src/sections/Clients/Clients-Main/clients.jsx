@@ -8,12 +8,14 @@ import {FetchStart} from "../../../redux/clients/client-actions"
 import Spinner from "../../../components/spinner/spinner.component"
 
 import "./clients.styles.css"
+import { useHistory } from 'react-router-dom';
 
 
-const Clients = ({fetchClients,clients,isfetching}) =>
+const Clients = ({fetchClients,clients,isfetching,updateSuccess}) =>
 {
     const [searchFor,setSearchFor] = useState("")
     let FilteredClients;
+    const history = useHistory()
 
     const searchClients = (event) =>
     {
@@ -34,6 +36,10 @@ const Clients = ({fetchClients,clients,isfetching}) =>
         })
     }
     
+    if(updateSuccess)
+    {
+        history.go()
+    }
 
     return(
         <div className="client-content">
@@ -50,7 +56,7 @@ const Clients = ({fetchClients,clients,isfetching}) =>
                     ? <Spinner/>
                     : clients ? FilteredClients.map((client,index) =>
                     {
-                    return <Client key ={index} id={client.customerId} fullName={client.fullName} currentCredit={client.currentCredit} paymentBalance={client.paymentBalance} lastLogInAt={client.lastLogInAt} username={client.userName} createdAt={client.createdAt}/>
+                    return <Client key ={index} id={client.customerId} uid={client.userId} fullName={client.fullName} currentCredit={client.currentCredit} paymentBalance={client.paymentBalance} lastLogInAt={client.lastLogInAt} username={client.userName} createdAt={client.createdAt}/>
                     } ) :null
                 }
             </SubSection>
@@ -61,7 +67,8 @@ const Clients = ({fetchClients,clients,isfetching}) =>
 const mapStateToProps = state =>
 ({
         clients:state.clients.ClientData,
-        isfetching:state.clients.isfetching
+        isfetching:state.clients.isfetching,
+        updateSuccess:state.clients.updateSuccess
 })
 
 const mapDispatchToProps = dispatch =>

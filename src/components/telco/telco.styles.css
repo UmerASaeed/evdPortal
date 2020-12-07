@@ -11,3 +11,20 @@
     justify-content: center;
     align-items: center;
 }
+
+.edit-name,.edit-name-clicked
+{
+    height:25px;
+    width:60px;
+    overflow-x: scroll;
+    padding: 5px 10px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    margin-right: 5px;
+}
+
+.edit-name-clicked
+{
+    outline: auto;
+}

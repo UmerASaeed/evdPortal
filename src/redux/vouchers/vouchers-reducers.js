@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     isFetchingBatchList:false,
     batchList:null,
     errorFetchingBatchList:null,
-    editBatch:false,
+    editBatch:{},
     uploadingVoucher:false,
     uploadingVoucherDetails:null,
     uploadingVoucherErrors:null,
@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     deleteVoucherList:{},
     deleteVoucherStart:false,
     deleteVoucherSuccess:false,
-    deleteVoucherError:null
+    deleteVoucherError:null,
+    editBatchStatus:false
 }
 
 
@@ -33,7 +34,8 @@ const VoucherReducer = (state = INITIAL_STATE , action) =>{
             ...state,
             isFetchingBatchList:false,
             batchList:action.payload,
-            errorFetchingBatchList:""       
+            errorFetchingBatchList:"",
+            editBatchStatus:false
         }
         case VoucherActionTypes.FETCH_BATCHLIST_FAILED:
         return{
@@ -122,6 +124,11 @@ const VoucherReducer = (state = INITIAL_STATE , action) =>{
             ...state,
             productId:null
         }
+        case VoucherActionTypes.EDIT_BATCH_STATUS:
+            return{
+                ...state,
+                editBatchStatus:true
+            }
         default:
             return state;
     }

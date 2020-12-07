@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import {ReactComponent as Logout} from "../../assets/logout.svg"
 import {LogOut} from "../../redux/login/login.actions"
 
 import "./header.styles.css"
-const Header = ({LogOut}) =>
+const Header = ({LogOut,sessionEnded}) =>
 {
     const logOut = () =>
     {
         LogOut()
     }
+
+    useEffect(()=>
+    {
+        if(sessionEnded)
+        {
+            LogOut()
+        }
+    },[sessionEnded])
 
     return(
         <div className="header">
@@ -28,4 +36,10 @@ const mapDispatchToProps = dispatch =>
     }
 }
 
-export default connect(null,mapDispatchToProps)(Header) 
+const mapStateToProps = state =>
+{
+    return{
+        sessionEnded:state.login.sessionEnded
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Header) 

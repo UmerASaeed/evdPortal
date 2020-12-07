@@ -6,7 +6,7 @@ import {setEditBatch,setCurrentBatch,updateBatchActivation,CancelBatch} from "..
 import SwitchBtn from "../Switch/switch.component"
 import "./batchList.styles.css"
 
-const BatchList = ({time,telcoName,categoryName,nameEn,quantity,used,batchNumber,supplierName,totalPrice,expiryDate,fileName,batchFilesID,setEditBatch,match,setCurrentBatch,active,updateBatchActivation,CancelBatch}) =>
+const BatchList = ({time,telcoName,categoryName,nameEn,quantity,used,BatchNumber,supplierName,totalPrice,expiryDate,fileName,batchFilesID,setEditBatch,match,setCurrentBatch,active,updateBatchActivation,CancelBatch,itemPrice}) =>
 {
 
     let history = useHistory()
@@ -41,9 +41,9 @@ const BatchList = ({time,telcoName,categoryName,nameEn,quantity,used,batchNumber
             <div className="batch-option batch-product">{nameEn}</div>
             <div className="batch-option batch-quantity">{quantity}</div>
             <div className="batch-option batch-used">{used}</div>
-            <div className="batch-option batch-name">{batchNumber}</div>
+            <div className="batch-option batch-name">{BatchNumber}</div>
             <div className="batch-option batch-vendor">{!supplierName ? 'N/A' : supplierName }</div>
-            <div className="batch-option batch-cost">{}</div>
+            <div className="batch-option batch-cost">{itemPrice}</div>
             <div className="batch-option batch-totalCost">{totalPrice}</div>
             <div className="batch-option batch-expiryDate">{expiryDate}</div>
             <div className="batch-option batch-fileName">{fileName}</div>
@@ -53,7 +53,7 @@ const BatchList = ({time,telcoName,categoryName,nameEn,quantity,used,batchNumber
             <div className="batch-option viewBatch" onClick={openViewBatch} >
                 <CustomButton btnText="View"/>
             </div>
-            <div className="batch-option batch-edit" onClick={()=>{setEditBatch(true)}}>
+            <div className="batch-option batch-edit" onClick={()=>{setEditBatch({data:{BatchNumber,batchFilesID},status:true})}}>
                 <CustomButton btnText="edit"/>
             </div>
             <div className="batch-option batch-cancel" onClick={cancelBatch}>

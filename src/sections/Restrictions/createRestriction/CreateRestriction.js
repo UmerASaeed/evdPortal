@@ -3,14 +3,16 @@ import { connect } from "react-redux"
 import {GetClientPricesStart} from "../../../redux/prices/prices-actions"
 import {clearProdStocks,setReason,setStartTime,setEndTime,saveQoutaAction} from "../../../redux/restrictions/restrictions.actions"
 import CustomButton from "../../../components/customButton/customButton.component"
+import {ReactComponent as BackBtn} from "../../../assets/Back button.svg"
 import NewRestriction from "../../../components/newRestriction/newRestriction.component"
 import "./createRestriction.styles.css"
+import { useHistory } from "react-router-dom"
 
 const CreateRestriction = ({GetClientPricesStart,prods,clearProdStocks,setReason,setStartTime,setEndTime,reason,startTime,endTime,newRestrictions,saveQoutaAction}) =>
 {
     let totalProds = null
     const [restrictionsCount,setRestrictionCount] = useState(0)
-    
+    const history = useHistory()
     useEffect(()=>
     {
         clearProdStocks()
@@ -60,16 +62,20 @@ const CreateRestriction = ({GetClientPricesStart,prods,clearProdStocks,setReason
         {
             let newRest = []
             Object.entries(newRestrictions).forEach(nr=>{
-            let obj={
-                ProductID: nr[1].ProductID,
-                CustomerID: nr[1].CustomerID,
-                MaxQuantity:parseInt(nr[1].MaxQuantity),
-                StartDate: startTime,
-                EndDate: endTime,
-                Reason: reason
-            }
-                newRest.push(obj)
+                if(nr[1].MaxQuantity !== "")
+                {
+                    let obj={
+                        ProductID: nr[1].ProductID,
+                        CustomerID: nr[1].CustomerID,
+                        MaxQuantity:parseInt(nr[1].MaxQuantity),
+                        StartDate: startTime,
+                        EndDate: endTime,
+                        Reason: reason
+                    }
+                    newRest.push(obj)
+                }
             })
+            
             saveQoutaAction(newRest)
         }
         
@@ -77,8 +83,11 @@ const CreateRestriction = ({GetClientPricesStart,prods,clearProdStocks,setReason
 
     return(
         <div className="content">
-            <div className="subHeader">
-                <h2 className="subText subText-newRest">Restrictions/New Restriction</h2>
+            <div className="subText addClient-subText">
+                <div style={{marginRight:"15px"}} onClick={()=>history.goBack()}>
+                    <BackBtn/>
+                </div>
+                Restrictions/New Restriction
             </div>
             <div className="createRest-content">
                 <div className="newRest-header-options">

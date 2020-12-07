@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import CustomButton from "../../components/customButton/customButton.component"
 import SubSection from "../../components/subSection/subSection.component"
 import ClientPrices from "../../components/ClientPrices/clientPrices.component"
+import DwnBtn from "../../assets/dwnBtn.png"
+import sideBtn from "../../assets/sideBtn.png"
 import {GetClientPricesStart,UpdateOffersStart,ClearOffersList} from "../../redux/prices/prices-actions"
 
 import "./prices.styles.css"
@@ -47,7 +49,10 @@ const Prices = ({GetData,clientWithPrices,updateOfferList,UpdateOffersStart,Clea
                 <div className="subSection-header">
                     <div className="subSection-title">Client</div>
                 </div>     
-                <div className="cP-clientName" onClick={HideAll}>Collapse All</div>
+                <div className="cP-clientName" onClick={HideAll} style={{display:"flex"}}>
+                {!hideAll ? <img src={DwnBtn}/> : <img src={sideBtn}/>}
+                    <div style={{marginLeft:"10px"}}>Collapse All</div>
+                </div>
                 {
                     clientWithPrices ? clientWithPrices.map((cwp,index) =>
                     {

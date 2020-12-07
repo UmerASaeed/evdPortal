@@ -1,3 +1,4 @@
+import { eventChannel } from "redux-saga"
 import StaffActionTypes from "./staff.types"
 
 export const FetchStaffStart = () =>
@@ -35,5 +36,21 @@ export const CreateStaff = () =>
 {
     return{
         type:StaffActionTypes.CREATE_STAFF
+    }
+}
+
+export const StaffCreated = (status) =>
+{
+    return{
+        type:StaffActionTypes.STAFF_CREATED,
+        payload:status
+    }
+}
+
+export const EditStaffStatus = (status) =>
+{
+    return{
+        type:StaffActionTypes.STAFF_UPDATED,
+        payload:status
     }
 }
