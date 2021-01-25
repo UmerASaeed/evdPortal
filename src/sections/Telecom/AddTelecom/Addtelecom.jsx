@@ -30,7 +30,12 @@ const Addtelecom = ({telcos,createTelcoAction,telcoCreated,UploadLogo,logoUpload
     const createTelco = () =>
     {
         const copyArr = JSON.parse(JSON.stringify(telcos))
-        const last = copyArr.pop()
+        let last = copyArr.pop()
+        if(!last)
+        {
+            last = {}
+            last.seqNo = 0
+        }
         setTelcoNames({...telcoNames,seqNo:last.seqNo+1})    
         
     }

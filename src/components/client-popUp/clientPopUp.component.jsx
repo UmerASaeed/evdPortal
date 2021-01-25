@@ -14,7 +14,7 @@ const ClientPopUp = ({clientName,purpose,id,updateStart,updateWalletStart,update
     const onAmountChange = (event)=>
     {
         let {value}=event.target
-        value= parseInt(value)
+        value= parseFloat(value)
         setClientId(id)
         setAmount(value)
     } 
